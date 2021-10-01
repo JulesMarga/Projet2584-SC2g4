@@ -10,6 +10,7 @@ public class Grille implements Parametres {
 
     private final HashSet<Case> grille;
     private int valeurMax = 0;
+    private int score = 0;
     private boolean deplacement;
 
     public Grille() {
@@ -48,6 +49,10 @@ public class Grille implements Parametres {
 
     public int getValeurMax() {
         return valeurMax;
+    }
+    
+    public String getScore() {
+        return String.valueOf(score);
     }
 
     public boolean partieFinie() {
@@ -91,6 +96,7 @@ public class Grille implements Parametres {
     
     private void fusion(Case c1, Case c2) {
         c1.setValeur(c1.getValeur() + c2.getValeur());
+        this.score += c1.getValeur();
         if (this.valeurMax < c1.getValeur()) {
             this.valeurMax = c1.getValeur();
         }

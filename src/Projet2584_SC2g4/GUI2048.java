@@ -14,6 +14,7 @@ public class GUI2048 extends javax.swing.JFrame implements Parametres {
 
     private void rafraichir() {
         labelGrille.setText(g.toHTML());
+        labelScore.setText(g.getScore());
     }
 
     private void finPartie(String message) {
@@ -34,6 +35,7 @@ public class GUI2048 extends javax.swing.JFrame implements Parametres {
         boutonDroite = new javax.swing.JButton();
         boutonBas = new javax.swing.JButton();
         resultat = new javax.swing.JLabel();
+        labelScore = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,16 +86,19 @@ public class GUI2048 extends javax.swing.JFrame implements Parametres {
                     .addComponent(resultat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(boutonGauche)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addComponent(labelGrille, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(boutonDroite)))
-                .addGap(41, 41, 41))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelScore, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(resultat, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(resultat, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelScore, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(boutonHaut)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,6 +228,7 @@ public class GUI2048 extends javax.swing.JFrame implements Parametres {
     private javax.swing.JButton boutonGauche;
     private javax.swing.JButton boutonHaut;
     private javax.swing.JLabel labelGrille;
+    private javax.swing.JLabel labelScore;
     private javax.swing.JLabel resultat;
     // End of variables declaration//GEN-END:variables
 }
