@@ -21,21 +21,21 @@ public class Main implements Parametres {
         System.out.println(g);*/
         
         while (!g.partieFinie()) {
-            System.out.println("Déplacer vers la Droite (d), Gauche (g), Haut (h), ou Bas (b) ?");
+            System.out.println("Déplacer vers la Droite (d), Gauche (q), Haut (z), ou Bas (s) ?");
             String s = sc.nextLine();
             s.toLowerCase();
             if (!(s.equals("d") || s.equals("droite")
-                    || s.equals("g") || s.equals("gauche")
-                    || s.equals("h") || s.equals("haut")
-                    || s.equals("b") || s.equals("bas"))) {
-                System.out.println("Vous devez écrire d pour Droite, g pour Gauche, h pour Haut ou b pour Bas");
+                    || s.equals("q") || s.equals("gauche")
+                    || s.equals("z") || s.equals("haut")
+                    || s.equals("s") || s.equals("bas"))) {
+                System.out.println("Vous devez écrire d pour Droite, q pour Gauche, z pour Haut ou s pour Bas");
             } else {
                 int direction;
                 if (s.equals("d") || s.equals("droite")) {
                     direction = DROITE;
-                } else if (s.equals("g") || s.equals("gauche")) {
+                } else if (s.equals("q") || s.equals("gauche")) {
                     direction = GAUCHE;
-                } else if (s.equals("h") || s.equals("haut")) {
+                } else if (s.equals("z") || s.equals("haut")) {
                     direction = HAUT;
                 } else {
                     direction = BAS;
@@ -46,6 +46,8 @@ public class Main implements Parametres {
                     if (!b) g.gameOver();
                 }
                 System.out.println(g);
+                System.out.println("score : " + g.getScore());
+                System.out.println("valeur max : " + g.getValeurMax() + " / " + OBJECTIF);
                 if (g.getValeurMax()>=OBJECTIF) g.victory();
             }
         }

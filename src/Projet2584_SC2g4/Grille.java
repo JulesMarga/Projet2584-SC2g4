@@ -3,7 +3,6 @@ package Projet2584_SC2g4;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Random;
 
 public class Grille implements Parametres {
