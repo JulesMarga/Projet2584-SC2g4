@@ -1,6 +1,6 @@
 package Projet2584_SC2g4;
 
-public class Case implements Parametres {
+public class Case implements Parametres, Cloneable {
 
     private int x, y, valeur;
     private Grille grille;
@@ -22,6 +22,10 @@ public class Case implements Parametres {
     public int getY() {
         return this.y;
     }
+    
+    public int getValeur() {
+        return this.valeur;
+    }
 
     public void setX(int x) {
         this.x = x;
@@ -33,10 +37,6 @@ public class Case implements Parametres {
 
     public void setValeur(int valeur) {
         this.valeur = valeur;
-    }
-
-    public int getValeur() {
-        return this.valeur;
     }
 
     @Override
@@ -111,7 +111,7 @@ public class Case implements Parametres {
 
     @Override
     public String toString() {
-        return "Case(" + this.x + "," + this.y + "," + this.valeur + ")";
+        return "Case(" + this.x + "," + this.y + "," + this.valeur + "," + this.grille + ")";
     }
 
 }

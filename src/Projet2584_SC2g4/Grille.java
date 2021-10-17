@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 
-public class Grille implements Parametres {
+public class Grille implements Parametres, Cloneable {
 
-    private final HashSet<Case> grille;
+    private HashSet<Case> grille;
     private int valeurMax = 0;
     private int score = 0;
     private boolean deplacement;
@@ -49,7 +49,7 @@ public class Grille implements Parametres {
     public int getValeurMax() {
         return valeurMax;
     }
-    
+
     public String getScore() {
         return String.valueOf(score);
     }
@@ -92,7 +92,7 @@ public class Grille implements Parametres {
         }
         return deplacement;
     }
-    
+
     private void fusion(Case c1, Case c2) {
         c1.setValeur(c1.getValeur() + c2.getValeur());
         this.score += c1.getValeur();
@@ -110,10 +110,14 @@ public class Grille implements Parametres {
                     || (direction == DROITE && extremites[rangee].getX() != TAILLE - 1 - compteur)) {
                 this.grille.remove(extremites[rangee]);
                 switch (direction) {
-                    case HAUT -> extremites[rangee].setY(compteur);
-                    case BAS -> extremites[rangee].setY(TAILLE - 1 - compteur);
-                    case GAUCHE -> extremites[rangee].setX(compteur);
-                    default -> extremites[rangee].setX(TAILLE - 1 - compteur);
+                    case HAUT ->
+                        extremites[rangee].setY(compteur);
+                    case BAS ->
+                        extremites[rangee].setY(TAILLE - 1 - compteur);
+                    case GAUCHE ->
+                        extremites[rangee].setX(compteur);
+                    default ->
+                        extremites[rangee].setX(TAILLE - 1 - compteur);
                 }
                 this.grille.add(extremites[rangee]);
                 deplacement = true;
@@ -145,16 +149,24 @@ public class Grille implements Parametres {
         for (Case c : this.grille) {
             switch (direction) {
                 case HAUT -> {
-                    if ((result[c.getX()] == null) || (result[c.getX()].getY() > c.getY())) result[c.getX()] = c; // si on n'avait pas encore de case pour cette rangée ou si on a trouvé un meilleur candidat
+                    if ((result[c.getX()] == null) || (result[c.getX()].getY() > c.getY())) {
+                        result[c.getX()] = c; // si on n'avait pas encore de case pour cette rangée ou si on a trouvé un meilleur candidat
+                    }
                 }
                 case BAS -> {
-                    if ((result[c.getX()] == null) || (result[c.getX()].getY() < c.getY())) result[c.getX()] = c;
+                    if ((result[c.getX()] == null) || (result[c.getX()].getY() < c.getY())) {
+                        result[c.getX()] = c;
+                    }
                 }
                 case GAUCHE -> {
-                    if ((result[c.getY()] == null) || (result[c.getY()].getX() > c.getX())) result[c.getY()] = c;
+                    if ((result[c.getY()] == null) || (result[c.getY()].getX() > c.getX())) {
+                        result[c.getY()] = c;
+                    }
                 }
                 default -> {
-                    if ((result[c.getY()] == null) || (result[c.getY()].getX() < c.getX())) result[c.getY()] = c;
+                    if ((result[c.getY()] == null) || (result[c.getY()].getX() < c.getX())) {
+                        result[c.getY()] = c;
+                    }
                 }
             }
         }
@@ -177,11 +189,15 @@ public class Grille implements Parametres {
             //valeur a 75% de chance d'etre 1 et 25% de chance d'etre 2
             int valeur;
             Random ra = new Random();
-            if (b) valeur = 1;
-            else {
+            if (b) {
+                valeur = 1;
+            } else {
                 int val = ra.nextInt(4); //nombre entier aleatoire entre 0 et 3
-                if (val == 0) valeur = 2; //1 chance sur 4 que le nombre soit 0
-                else valeur = 1; //3 chance sur 4 que le nombre soit different de 0
+                if (val == 0) {
+                    valeur = 2; //1 chance sur 4 que le nombre soit 0
+                } else {
+                    valeur = 1; //3 chance sur 4 que le nombre soit different de 0
+                }
             }
             // on crée toutes les cases encore libres
             for (int x = 0; x < TAILLE; x++) {
@@ -204,4 +220,16 @@ public class Grille implements Parametres {
             return false;
         }
     }
+
+    public Object clone() {
+        Grille gril = new Grille();
+        Case caseClone;
+        for (Case c : this.grille) {
+            caseClone = new Case(c.getX(), c.getY(), c.getValeur());
+            caseClone.setGrille(gril);
+            gril.grille.add(caseClone);
+        }
+        return gril;
+    }
+    
 }
