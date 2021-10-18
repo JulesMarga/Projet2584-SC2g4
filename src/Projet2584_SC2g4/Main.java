@@ -1,7 +1,7 @@
 package Projet2584_SC2g4;
 
 import java.util.Scanner;
-//TEST ? 
+
 public class Main implements Parametres {
 
     public static void main(String[] args) {
@@ -10,10 +10,11 @@ public class Main implements Parametres {
         b = g1.nouvelleCase(false);
         Scanner sc = new Scanner(System.in);
         Grille g2 = (Grille) g1.clone();
-        
+
+        boolean cont = true;
         boolean bon = false;
-        while (!g1.partieFinie() || !g2.partieFinie()) {
-            if (!g1.partieFinie()) {
+        while (cont) {
+            if (cont) {
                 System.out.println("Joueur 1 :");
                 System.out.println(g1);
                 System.out.println("score : " + g1.getScore());
@@ -43,17 +44,15 @@ public class Main implements Parametres {
                         if (b2) {
                             b = g1.nouvelleCase(false);
                             if (!b) {
-                                g1.gameOver();
+                                cont = false;
                             }
-                        }
-                        if (g1.getValeurMax() >= OBJECTIF) {
-                            g1.victory();
                         }
                     }
                 }
                 bon = false;
-            }else g1.gameOver();
-            if (!g2.partieFinie()) {
+                if(g1.partieFinie() || g1.getValeurMax() >= OBJECTIF) cont = false;
+            }
+            if (cont) {
                 System.out.println("Joueur 2 :");
                 System.out.println(g2);
                 System.out.println("score : " + g2.getScore());
@@ -83,17 +82,19 @@ public class Main implements Parametres {
                         if (b2) {
                             b = g2.nouvelleCase(false);
                             if (!b) {
-                                g2.gameOver();
+                                cont = false;
                             }
-                        }
-                        if (g2.getValeurMax() >= OBJECTIF) {
-                            g2.victory();
                         }
                     }
                 }
                 bon = false;
-            }else g2.gameOver();
+                if(g1.partieFinie() || g2.getValeurMax() >= OBJECTIF) cont = false;
+            }
         }
+        if (g1.getValeurMax() >= OBJECTIF) System.out.println("Le joueur 1 a obtenu la tuile " + OBJECTIF + ", le joueur 1 a gagné !");
+        if (g2.getValeurMax() >= OBJECTIF) System.out.println("Le joueur 2 a obtenu la tuile " + OBJECTIF + ", le joueur 2 a gagné !");
+        if (g1.partieFinie()) System.out.println("Le joueur 1 ne peut plus déplacer de tuiles, le joueur 2 a gagné !");
+        if (g2.partieFinie()) System.out.println("Le joueur 2 ne peut plus déplacer de tuiles, le joueur 1 a gagné !");
     }
 
 }
