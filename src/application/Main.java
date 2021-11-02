@@ -26,9 +26,9 @@ public class Main extends Application{
         //System.out.println(getClass().getResource("FXMLDocument.fxml").toString());
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
     
-        Scene scene = new Scene(root, 300, 275);
-    
-        stage.setTitle("FXML Welcome");
+        Scene scene = new Scene(root);
+        boolean add = scene.getStylesheets().add("application/styles.css");
+
         stage.setScene(scene);
         stage.show();
     }
