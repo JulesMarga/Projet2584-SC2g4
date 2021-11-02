@@ -10,7 +10,7 @@ public class Main implements Parametres {
         b = g1.nouvelleCase(false);
         Scanner sc = new Scanner(System.in);
         Grille g2 = (Grille) g1.clone();
-
+        //test
         boolean cont = true;
         boolean bon = false;
         while (cont) {

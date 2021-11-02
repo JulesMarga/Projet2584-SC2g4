@@ -173,16 +173,6 @@ public class Grille implements Parametres, Cloneable {
         return result;
     }
 
-    public void victory() {
-        System.out.println("Bravo ! Vous avez atteint " + this.valeurMax);
-        System.exit(0);
-    }
-
-    public void gameOver() {
-        System.out.println("La partie est finie. Votre score est " + this.valeurMax);
-        System.exit(1);
-    }
-
     public boolean nouvelleCase(boolean b) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
         if (this.grille.size() < TAILLE * TAILLE) {
             ArrayList<Case> casesLibres = new ArrayList<>();
