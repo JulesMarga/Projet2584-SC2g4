@@ -1,3 +1,4 @@
+package application; 
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -7,7 +8,7 @@ public class FXMLDocumentController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
