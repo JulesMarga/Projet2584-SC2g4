@@ -1,15 +1,69 @@
 package Projet2584_SC2g4;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 //Test
 
 public class Main implements Parametres {
+    
 
     public static void main(String[] args) {
+        
+        //Création de la partie
+        Partie2584 p = new Partie2584();
+        
+        //Détermination des paramètres de la partie
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Bienvenue dans le jeu 2584. Souhaitez-vous jouer en mode 1 joueur (1) ou 2 joueurs (2) ?");
+        int rep = 0;
+        while (rep!=1 && rep!=2){
+            try{
+                rep=sc.nextInt();
+            }
+            catch(InputMismatchException ime){
+            }
+        }
+        
+        //Initialisation des joueurs
+        Joueur j1 = null;
+        Joueur j2=null;
+        
+        //joueur1
+        System.out.println("Joueur n°1, veuillez choisir un pseudonyme:");
+        String p1=null;
+        while (p1==null){
+            try{
+                p1=sc.nextLine();
+                j1=new Joueur(p1);
+            }
+            catch(Exception e){
+                System.out.println("\nVeuillez choisir un pseudonyme:");
+            }
+        }
+        
+        //Eventuellement deuxième joueur
+        if(rep==2){
+            System.out.println("Joueur n°2, veuillez choisir un pseudonyme:");
+            String p2=null;
+            while (p2==null){
+                try{
+                    p2=sc.nextLine();
+                    j2=new Joueur(p2);
+                }
+                catch(Exception e){
+                    System.out.println("\nVeuillez choisir un pseudonyme:");
+                }
+            }
+        }
+        
+        p.setJ1(j1);
+        p.setJ2(j2);
+      
+        
         Grille g1 = new Grille();
         boolean b = g1.nouvelleCase(true);
         b = g1.nouvelleCase(false);
-        Scanner sc = new Scanner(System.in);
+
         Grille g2 = (Grille) g1.clone();
 
         boolean cont = true;
