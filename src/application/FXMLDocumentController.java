@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -40,6 +41,10 @@ public class FXMLDocumentController implements Initializable{
         p.setLayoutY(y);
         p.setVisible(true);
         c.setVisible(true);
+    }
+    
+    public void keyPressed(KeyEvent ke) {
+        System.out.println("Hello");
     }
     
 }
