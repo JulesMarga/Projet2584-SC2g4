@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 //Test
 
-public class Main implements Parametres {
+public class MainSansGUI implements Parametres {
     
 
     public static void main(String[] args) {
@@ -58,9 +58,25 @@ public class Main implements Parametres {
         
         p.setJ1(j1);
         p.setJ2(j2);
-      
         
-        Grille g1 = new Grille();
+        System.out.println("Souhaitez-vous jouer dans la console (c) ou dans l'interface graphique (g) ?");
+        String mode="";
+        
+        while(!mode.equals("c")&&!mode.equals("g")){
+            try{
+                mode=sc.nextLine();
+            }
+            catch(InputMismatchException ime){
+                
+            }
+        }
+        
+        if(mode.equals("g")){
+            
+            application.Main.main(args);
+        }
+        else{
+            Grille g1 = new Grille();
         boolean b = g1.nouvelleCase(true);
         b = g1.nouvelleCase(false);
 
@@ -151,5 +167,8 @@ public class Main implements Parametres {
         if (g1.partieFinie()) System.out.println("Le joueur 1 ne peut plus déplacer de tuiles, le joueur 2 a gagné !");
         if (g2.partieFinie()) System.out.println("Le joueur 2 ne peut plus déplacer de tuiles, le joueur 1 a gagné !");
     }
+        }
+                
+        
 
 }
