@@ -7,15 +7,34 @@ import java.util.Random;
 
 public class Grille implements Parametres, Cloneable {
 
-    private HashSet<Case> grille;
-    private int valeurMax = 0;
+    private HashSet<Case> grille; //Une grille est composée d'un ensemble de cases
+    private int valeurMax = 0; //La valeur maximale contenue par la grille à un instant t
     private int score = 0;
     private boolean deplacement;
+    
+    //Setters
+    
+    
+    //Getters
+    public HashSet<Case> getGrille() {
+        return grille;
+    }
 
+    public int getValeurMax() {
+        return valeurMax;
+    }
+
+    public String getScore() {
+        return String.valueOf(score);
+    }
+    
+    //Constructeur
     public Grille() {
         this.grille = new HashSet<>();
     }
-
+    
+    
+    //Méthodes redéfinies
     @Override
     public String toString() {
         int[][] tableau = new int[TAILLE][TAILLE];
@@ -28,7 +47,20 @@ public class Grille implements Parametres, Cloneable {
         }
         return result;
     }
-
+    
+    @Override
+    public Object clone() {
+        Grille gril = new Grille();
+        Case caseClone;
+        for (Case c : this.grille) {
+            caseClone = new Case(c.getX(), c.getY(), c.getValeur());
+            caseClone.setGrille(gril);
+            gril.grille.add(caseClone);
+        }
+        return gril;
+    }
+    
+    //Autres méthodes
     public String toHTML() {
         int[][] tableau = new int[TAILLE][TAILLE];
         for (Case c : this.grille) {
@@ -42,17 +74,7 @@ public class Grille implements Parametres, Cloneable {
         return result;
     }
 
-    public HashSet<Case> getGrille() {
-        return grille;
-    }
-
-    public int getValeurMax() {
-        return valeurMax;
-    }
-
-    public String getScore() {
-        return String.valueOf(score);
-    }
+    
 
     public boolean partieFinie() {
         if (this.grille.size() < TAILLE * TAILLE) {
@@ -173,6 +195,16 @@ public class Grille implements Parametres, Cloneable {
         return result;
     }
 
+    public void victory() {
+        System.out.println("Bravo ! Vous avez atteint " + this.valeurMax);
+        System.exit(0);
+    }
+
+    public void gameOver() {
+        System.out.println("La partie est finie. Votre score est " + this.valeurMax);
+        System.exit(1);
+    }
+
     public boolean nouvelleCase(boolean b) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
         if (this.grille.size() < TAILLE * TAILLE) {
             ArrayList<Case> casesLibres = new ArrayList<>();
@@ -202,7 +234,7 @@ public class Grille implements Parametres, Cloneable {
             Case ajout = casesLibres.get(ra.nextInt(casesLibres.size()));
             ajout.setGrille(this);
             this.grille.add(ajout);
-            if ((this.grille.size() == 1) || (this.valeurMax == 1 && ajout.getValeur() == 2)) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 2 et que l'ancien max était 1
+            if (ajout.getValeur()>this.valeurMax) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 2 et que l'ancien max était 1
                 this.valeurMax = ajout.getValeur();
             }
             return true;
@@ -211,15 +243,6 @@ public class Grille implements Parametres, Cloneable {
         }
     }
 
-    public Object clone() {
-        Grille gril = new Grille();
-        Case caseClone;
-        for (Case c : this.grille) {
-            caseClone = new Case(c.getX(), c.getY(), c.getValeur());
-            caseClone.setGrille(gril);
-            gril.grille.add(caseClone);
-        }
-        return gril;
-    }
+    
     
 }
