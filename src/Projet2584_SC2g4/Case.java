@@ -4,18 +4,19 @@ public class Case implements Parametres, Cloneable {
 
     private int x, y, valeur; //La case a des coordonnées ainsi qu'une valeur
     private Grille grille; //La case est liée à une grille (relation d'agrégation)
-    
+
     //Constructeur
     public Case(int abs, int ord, int v) {
         this.x = abs;
         this.y = ord;
         this.valeur = v;
     }
-    
+
     //Setters
     public void setGrille(Grille g) {
         this.grille = g;
     }
+
     public void setX(int x) {
         this.x = x;
     }
@@ -27,7 +28,7 @@ public class Case implements Parametres, Cloneable {
     public void setValeur(int valeur) {
         this.valeur = valeur;
     }
-    
+
     //Getters
     public int getX() {
         return this.x;
@@ -36,11 +37,11 @@ public class Case implements Parametres, Cloneable {
     public int getY() {
         return this.y;
     }
-    
+
     public int getValeur() {
         return this.valeur;
     }
-    
+
     //Autres méthodes
     @Override
     public boolean equals(Object obj) { // la méthode equals est utilisée lors de l'ajout d'une case à un ensemble pour vérifier qu'il n'y a pas de doublons (teste parmi tous les candidats qui ont le même hashcode)
@@ -57,39 +58,39 @@ public class Case implements Parametres, Cloneable {
     public int hashCode() { // détermine le hashcode
         return this.x * 7 + this.y * 13;
     }
-    
-    
+
     //détermine si deux cases correspondent à des valeurs consécutives de la suite de Fibonacci dont la plus grande est inférieure ou égale à 2584
     public boolean suiteFibo(Case c) {
-        
+
         if (c != null) {
-            
+
             int max, min; //on determine parmi les deux valeurs laquelle est la plus grande et laquelle est la plus petite
-            
+
             if (c.getValeur() > this.getValeur()) {
-                max = c.getValeur();min = this.getValeur();
+                max = c.getValeur();
+                min = this.getValeur();
+            } else if (this.getValeur() > c.getValeur()) {
+                max = this.getValeur();
+                min = c.getValeur();
+            } else if (c.getValeur() == 1) {
+                return true; //si les deux cases ont la même valeur, c'est bon ssi ce sont des 1
+            } else {
+                return false; //sinon, ils ne sont pas consécutifs dans la suite de Fibonacci
             }
-            else if (this.getValeur() > c.getValeur()){
-                max = this.getValeur();min = c.getValeur();
-            }
-            else if(c.getValeur() == 1) return true; //si les deux cases ont la même valeur, c'est bon ssi ce sont des 1
-            else return false; //sinon, ils ne sont pas consécutifs dans la suite de Fibonacci
-            
             //On regarde si la plus petite valeur est dans la suite de Fibonacci
-            int imin=0;
-            while(imin<Parametres.tableauFibo.length){
-                if(Parametres.tableauFibo[imin] != min){
+            int imin = 0;
+            while (imin < Parametres.tableauFibo.length) {
+                if (Parametres.tableauFibo[imin] != min) {
                     imin++;
                 }
             }
-            if(imin<Parametres.tableauFibo.length-1){
+            if (imin < Parametres.tableauFibo.length - 1) {
                 //Si c'est bien le cas, il suffit de vérifier si la valeur de la seconde case se trouve dans la case suivante du tableau contenant les termes de la suite
-                return Parametres.tableauFibo[imin+1]==max;
-            }
-            else{
+                return Parametres.tableauFibo[imin + 1] == max;
+            } else {
                 return false;
             }
-            
+
         } else {
             return false;
         }
@@ -129,7 +130,7 @@ public class Case implements Parametres, Cloneable {
                 }
             }
         }
-        
+
         return null;
     }
 

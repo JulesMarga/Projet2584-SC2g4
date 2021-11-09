@@ -11,10 +11,8 @@ public class Grille implements Parametres, Cloneable {
     private int valeurMax = 0; //La valeur maximale contenue par la grille à un instant t
     private int score = 0;
     private boolean deplacement;
-    
+
     //Setters
-    
-    
     //Getters
     public HashSet<Case> getGrille() {
         return grille;
@@ -27,13 +25,12 @@ public class Grille implements Parametres, Cloneable {
     public String getScore() {
         return String.valueOf(score);
     }
-    
+
     //Constructeur
     public Grille() {
         this.grille = new HashSet<>();
     }
-    
-    
+
     //Méthodes redéfinies
     @Override
     public String toString() {
@@ -47,7 +44,7 @@ public class Grille implements Parametres, Cloneable {
         }
         return result;
     }
-    
+
     @Override
     public Object clone() {
         Grille gril = new Grille();
@@ -59,7 +56,7 @@ public class Grille implements Parametres, Cloneable {
         }
         return gril;
     }
-    
+
     //Autres méthodes
     public String toHTML() {
         int[][] tableau = new int[TAILLE][TAILLE];
@@ -73,8 +70,6 @@ public class Grille implements Parametres, Cloneable {
         result += "</html>";
         return result;
     }
-
-    
 
     public boolean partieFinie() {
         if (this.grille.size() < TAILLE * TAILLE) {
@@ -234,7 +229,7 @@ public class Grille implements Parametres, Cloneable {
             Case ajout = casesLibres.get(ra.nextInt(casesLibres.size()));
             ajout.setGrille(this);
             this.grille.add(ajout);
-            if (ajout.getValeur()>this.valeurMax) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 2 et que l'ancien max était 1
+            if (ajout.getValeur() > this.valeurMax) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 2 et que l'ancien max était 1
                 this.valeurMax = ajout.getValeur();
             }
             return true;
@@ -243,6 +238,4 @@ public class Grille implements Parametres, Cloneable {
         }
     }
 
-    
-    
 }
