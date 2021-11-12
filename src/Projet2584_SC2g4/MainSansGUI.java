@@ -51,8 +51,8 @@ public class MainSansGUI implements Parametres {
             }
         }
 
-        p.setJ1(j1);
-        p.setJ2(j2);
+        p.setJoueur(j1);
+        p.setJoueur(j2);
 
         System.out.println("Souhaitez-vous jouer dans la console (c) ou dans l'interface graphique (g) ?");
         String mode = "";
@@ -69,108 +69,8 @@ public class MainSansGUI implements Parametres {
 
             application.Main.main(args);
         } else {
-            Grille g1 = new Grille();
-            boolean b = g1.nouvelleCase(true);
-            b = g1.nouvelleCase(false);
-
-            Grille g2 = (Grille) g1.clone();
-
-            boolean cont = true;
-            boolean bon = false;
-            while (cont) {
-                if (cont) {
-                    System.out.println(p.getJ1().getPseudo() + " :");
-                    System.out.println(p.getJ1().getGrille());
-                    System.out.println("score : " + p.getJ1().getGrille().getScore());
-                    System.out.println("valeur max : " + p.getJ1().getGrille().getValeurMax() + " / " + OBJECTIF);
-                    System.out.println("Déplacer vers la Droite (d), Gauche (q), Haut (z), ou Bas (s) ?");
-                    while (!bon) {
-                        String s = sc.nextLine();
-                        s.toLowerCase();
-                        if (!(s.equals("d") || s.equals("droite")
-                                || s.equals("q") || s.equals("gauche")
-                                || s.equals("z") || s.equals("haut")
-                                || s.equals("s") || s.equals("bas"))) {
-                            System.out.println("Vous devez écrire d pour Droite, q pour Gauche, z pour Haut ou s pour Bas");
-                        } else {
-                            bon = true;
-                            int direction;
-                            if (s.equals("d") || s.equals("droite")) {
-                                direction = DROITE;
-                            } else if (s.equals("q") || s.equals("gauche")) {
-                                direction = GAUCHE;
-                            } else if (s.equals("z") || s.equals("haut")) {
-                                direction = HAUT;
-                            } else {
-                                direction = BAS;
-                            }
-                            boolean b2 = p.getJ1().getGrille().lanceurDeplacerCases(direction);
-                            if (b2) {
-                                b = p.getJ1().getGrille().nouvelleCase(false);
-                                if (!b) {
-                                    cont = false;
-                                }
-                            }
-                        }
-                    }
-                    bon = false;
-                    if (p.getJ1().getGrille().partieFinie() || p.getJ1().getGrille().getValeurMax() >= OBJECTIF) {
-                        cont = false;
-                    }
-                }
-                if (cont) {
-                    System.out.println(p.getJ2().getPseudo() + " :");
-                    System.out.println(p.getJ2().getGrille());
-                    System.out.println("score : " + p.getJ2().getGrille().getScore());
-                    System.out.println("valeur max : " + p.getJ2().getGrille().getValeurMax() + " / " + OBJECTIF);
-                    System.out.println("Déplacer vers la Droite (m), Gauche (k), Haut (o), ou Bas (l) ?");
-                    while (!bon) {
-                        String s = sc.nextLine();
-                        s.toLowerCase();
-                        if (!(s.equals("m") || s.equals("droite")
-                                || s.equals("k") || s.equals("gauche")
-                                || s.equals("o") || s.equals("haut")
-                                || s.equals("l") || s.equals("bas"))) {
-                            System.out.println("Vous devez écrire m pour Droite, k pour Gauche, o pour Haut ou l pour Bas");
-                        } else {
-                            bon = true;
-                            int direction;
-                            if (s.equals("m") || s.equals("droite")) {
-                                direction = DROITE;
-                            } else if (s.equals("k") || s.equals("gauche")) {
-                                direction = GAUCHE;
-                            } else if (s.equals("o") || s.equals("haut")) {
-                                direction = HAUT;
-                            } else {
-                                direction = BAS;
-                            }
-                            boolean b2 = p.getJ2().getGrille().lanceurDeplacerCases(direction);
-                            if (b2) {
-                                b = p.getJ2().getGrille().nouvelleCase(false);
-                                if (!b) {
-                                    cont = false;
-                                }
-                            }
-                        }
-                    }
-                    bon = false;
-                    if (p.getJ2().getGrille().partieFinie() || p.getJ2().getGrille().getValeurMax() >= OBJECTIF) {
-                        cont = false;
-                    }
-                }
-            }
-            if (p.getJ1().getGrille().getValeurMax() >= OBJECTIF) {
-                System.out.println("Le joueur 1 a obtenu la tuile " + OBJECTIF + ", le joueur 1 a gagné !");
-            }
-            if (p.getJ2().getGrille().getValeurMax() >= OBJECTIF) {
-                System.out.println("Le joueur 2 a obtenu la tuile " + OBJECTIF + ", le joueur 2 a gagné !");
-            }
-            if (p.getJ1().getGrille().partieFinie()) {
-                System.out.println("Le joueur 1 ne peut plus déplacer de tuiles, le joueur 2 a gagné !");
-            }
-            if (p.getJ2().getGrille().partieFinie()) {
-                System.out.println("Le joueur 2 ne peut plus déplacer de tuiles, le joueur 1 a gagné !");
-            }
+            p.deroulement();
+            p.fin();
         }
     }
 

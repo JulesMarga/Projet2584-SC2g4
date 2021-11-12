@@ -24,6 +24,11 @@ public class Joueur {
     public Grille getGrille() {
         return this.grille;
     }
+    
+    @Override
+    public String toString() {
+        return this.pseudo + " :\n" + this.grille;
+    }
 
     public static void main(String[] args) {
         // TODO code application logic here

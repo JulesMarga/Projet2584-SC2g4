@@ -77,9 +77,11 @@ public class Case implements Parametres, Cloneable {
             } else {
                 return false; //sinon, ils ne sont pas consécutifs dans la suite de Fibonacci
             }
+            return max - min <= min; //si la difference entre la plus grande valeur et la plus petite est inférieure à la plus petite valeur, alors ces deux nombres sont consécutifs dans la suite de Fibonacci
+        } else {
+            return false;
         }
-        
-        return false;
+
     }
 
     public Case getVoisinDirect(int direction) {
