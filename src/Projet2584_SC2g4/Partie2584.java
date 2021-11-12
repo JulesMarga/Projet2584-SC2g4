@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Projet2584_SC2g4;
 
-/**
- *
- * @author clementinebleuze
- */
 public class Partie2584 {
 
     private Joueur joueur1;

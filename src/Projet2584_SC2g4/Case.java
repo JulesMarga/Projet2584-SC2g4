@@ -77,23 +77,9 @@ public class Case implements Parametres, Cloneable {
             } else {
                 return false; //sinon, ils ne sont pas consécutifs dans la suite de Fibonacci
             }
-            //On regarde si la plus petite valeur est dans la suite de Fibonacci
-            int imin = 0;
-            while (imin < Parametres.tableauFibo.length) {
-                if (Parametres.tableauFibo[imin] != min) {
-                    imin++;
-                }
-            }
-            if (imin < Parametres.tableauFibo.length - 1) {
-                //Si c'est bien le cas, il suffit de vérifier si la valeur de la seconde case se trouve dans la case suivante du tableau contenant les termes de la suite
-                return Parametres.tableauFibo[imin + 1] == max;
-            } else {
-                return false;
-            }
-
-        } else {
-            return false;
         }
+        
+        return false;
     }
 
     public Case getVoisinDirect(int direction) {
