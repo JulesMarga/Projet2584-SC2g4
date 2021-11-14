@@ -13,7 +13,9 @@ public class Grille implements Parametres, Cloneable {
     private boolean deplacement;
     
     //Setters
-    
+    public void setValeurMax(int i){
+        this.valeurMax=i;
+    }
     
     //Getters
     public HashSet<Case> getGrille() {

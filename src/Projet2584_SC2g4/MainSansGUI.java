@@ -31,8 +31,7 @@ public class MainSansGUI implements Parametres {
             
             //Création de la partie
             Partie2584 p = new Partie2584();
-            Grille g1=null; //raccourci (au lieu de p.getJ1().getGrille()
-            Grille g2=null; //idem
+
             
             Scanner sc2 =  new Scanner(System.in);
             System.out.println("Souhaitez-vous jouer en mode 1 joueur (1) ou 2 joueurs (2) ?");
@@ -61,7 +60,6 @@ public class MainSansGUI implements Parametres {
             }
             
             p.setJ1(new Joueur(pseudo1));
-            g1=p.getJ1().getGrille();
             
             //On répète l'opération s'il y a un deuxième joueur
             if(rep==2){
@@ -78,47 +76,13 @@ public class MainSansGUI implements Parametres {
                 }
             
                 p.setJ2(new Joueur(pseudo2));
-                g2=p.getJ2().getGrille();
             }
             
-//            System.out.println(p.getJ1());
-//            System.out.println(p.getJ2());
+            p.deroulement();
             
-        
-        while(!p.partieFinie()){
             
-            //On commence par le joueur 1, s'il n'a pas encore terminé de jouer
-            if(!g1.partieFinie()){
-                
-                System.out.println("\n"+p.getJ1().getPseudo());
-                
-                //On ajoute une nouvelle case à la grille
-                if(g1.getValeurMax()==0){
-                    g1.nouvelleCase(true); //C'est forcément un 1 si c'est le premier coup
-                }
-                else{
-                    g1.nouvelleCase(false); //Sinon, 3 chances sur 4 d'avoir un 1, 1 chance sur 4 d'avoir un 2
-                }
-                //Affichage de la grille
-                System.out.println(g1);
-                
-                //Choix d'un déplacement
-                System.out.println("Veuillez choisir un déplacement: ");
-                System.out.println("Déplacer vers la Droite (d), Gauche (q), Haut (z), ou Bas (s) ?");
-                String deplacement = sc.nextLine();
-                
-                while(Partie2584.directionZQSD(deplacement)==0){
-                    System.out.println("Veuillez corriger votre saisie.\n");   
-                    System.out.println("Déplacer vers la Droite (d), Gauche (q), Haut (z), ou Bas (s) ?");
-                    deplacement = sc.nextLine();
-                }
-                
-                int direction = Partie2584.directionZQSD(deplacement);
-                boolean b = g1.lanceurDeplacerCases(direction);
-                
-                //On affiche la grille modifiée
-                System.out.println(g1);
-            }
+            
+            
         }
 //            
 //        boolean cont = true;
@@ -210,7 +174,7 @@ public class MainSansGUI implements Parametres {
 //                
         
     
-}
+
     
     }
 }
