@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package application;
 
 import Projet2584_SC2g4.Partie2584;
@@ -12,15 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author clementinebleuze
- */
 public class Main extends Application {
 
-    /**
-     * @param args the command line arguments
-     */
     private Partie2584 p;
 
     public void setPartie(Partie2584 p) {
@@ -44,7 +32,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println(args[1]);
         launch(args);
     }
 

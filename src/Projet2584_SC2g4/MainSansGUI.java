@@ -2,10 +2,8 @@ package Projet2584_SC2g4;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-//Test
 
 public class MainSansGUI implements Parametres {
-    
 
     public static void main(String[] args) {
                 
