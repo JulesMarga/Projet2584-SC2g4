@@ -59,12 +59,13 @@ public class MainSansGUI implements Parametres {
         p.setJ1(j1);
         p.setJ2(j2);
         
+        Scanner sc2 = new Scanner(System.in);
         System.out.println("Souhaitez-vous jouer dans la console (c) ou dans l'interface graphique (g) ?");
         String mode="";
         
         while(!mode.equals("c")&&!mode.equals("g")){
             try{
-                mode=sc.nextLine();
+                mode=sc2.nextLine();
             }
             catch(InputMismatchException ime){
                 
@@ -72,8 +73,7 @@ public class MainSansGUI implements Parametres {
         }
         
         if(mode.equals("g")){
-            
-            application.Main.main(args);
+            application.Main.main(new String[]{j1.getPseudo(),j2.getPseudo()});
         }
         else{
             Grille g1 = new Grille();
