@@ -40,6 +40,11 @@ public class Joueur {
         return this.score;
     }
     
+    //Autres méthodes
+    @Override
+    public String toString(){
+        return(this.pseudo+"\n"+this.grille);
+    }
     public static void main(String[] args) {
         // TODO code application logic here
     }

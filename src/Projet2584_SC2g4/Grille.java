@@ -206,40 +206,46 @@ public class Grille implements Parametres, Cloneable {
     }
 
     public boolean nouvelleCase(boolean b) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
+        //On commence par regarder s'il reste de la place dans la grille pour une nouvelle case
         if (this.grille.size() < TAILLE * TAILLE) {
-            ArrayList<Case> casesLibres = new ArrayList<>();
-            //valeur a 75% de chance d'etre 1 et 25% de chance d'etre 2
+            
+            //Détermination aléatoire de la valeur de la nouvelle case
             int valeur;
             Random ra = new Random();
             if (b) {
-                valeur = 1;
+                valeur = 1; //début de partie: on veut seulement avoir un 1
             } else {
-                int val = ra.nextInt(4); //nombre entier aleatoire entre 0 et 3
-                if (val == 0) {
+                int alea = ra.nextInt(4); //nombre entier aleatoire entre 0 et 3
+                if (alea== 0) {
                     valeur = 2; //1 chance sur 4 que le nombre soit 0
                 } else {
                     valeur = 1; //3 chance sur 4 que le nombre soit different de 0
                 }
+            //75% de chances que la nouvelle case soit un 1, 25% de chances que ça soit un 2
             }
+            
+                        
+            //On va récupérer les cases encore libres
+            ArrayList<Case> casesLibres = new ArrayList<>();
             // on crée toutes les cases encore libres
             for (int x = 0; x < TAILLE; x++) {
                 for (int y = 0; y < TAILLE; y++) {
                     Case c = new Case(x, y, valeur);
-                    if (!this.grille.contains(c)) { // contains utilise la méthode equals dans Case
+                    if (!this.grille.contains(c)) { // contains utilise la méthode equals dans Case selon laquelle deux cases sont égales lorsqu'elles ont les mêmes coordonnées
                         casesLibres.add(c);
                     }
                 }
             }
             // on en choisit une au hasard et on l'ajoute à la grille
-            Case ajout = casesLibres.get(ra.nextInt(casesLibres.size()));
-            ajout.setGrille(this);
-            this.grille.add(ajout);
-            if (ajout.getValeur()>this.valeurMax) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 2 et que l'ancien max était 1
-                this.valeurMax = ajout.getValeur();
+            Case nouvelleCase = casesLibres.get(ra.nextInt(casesLibres.size()));
+            nouvelleCase.setGrille(this);
+            this.grille.add(nouvelleCase);
+            if (nouvelleCase.getValeur()>this.valeurMax) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 2 et que l'ancien max était 1
+                this.valeurMax = nouvelleCase.getValeur();
             }
-            return true;
+            return true; //L'ajout a bien été effectué
         } else {
-            return false;
+            return false; //L'ajout ne s'est pas effectué: grille déjà remplie
         }
     }
 

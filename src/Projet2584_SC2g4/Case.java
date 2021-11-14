@@ -75,24 +75,11 @@ public class Case implements Parametres, Cloneable {
             else if(c.getValeur() == 1) return true; //si les deux cases ont la même valeur, c'est bon ssi ce sont des 1
             else return false; //sinon, ils ne sont pas consécutifs dans la suite de Fibonacci
             
-            //On regarde si la plus petite valeur est dans la suite de Fibonacci
-            int imin=0;
-            while(imin<Parametres.tableauFibo.length){
-                if(Parametres.tableauFibo[imin] != min){
-                    imin++;
-                }
-            }
-            if(imin<Parametres.tableauFibo.length-1){
-                //Si c'est bien le cas, il suffit de vérifier si la valeur de la seconde case se trouve dans la case suivante du tableau contenant les termes de la suite
-                return Parametres.tableauFibo[imin+1]==max;
-            }
-            else{
-                return false;
-            }
-            
-        } else {
-            return false;
+            //Important: on sait déjà que les valeurs des cases sont contenues dans la suite de Fibonacci (par création des cases)
+            //Donc il reste simplement à vérifier le caractère consécutif
+            return (max-min<min || max-min==min);
         }
+        return false;
     }
 
     public Case getVoisinDirect(int direction) {
