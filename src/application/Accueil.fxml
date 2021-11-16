@@ -10,7 +10,9 @@
     <children>
         <Pane fx:id="fond" style="-fx-background-color: yellow;" prefHeight="613.0" prefWidth="500.0">
             <children>
-                <Button fx:id="buttonStart" layoutX="178.0" layoutY="126.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Start" onclick="#lancerPartie" />
+                <Label fx:id="labelHello" text="Bienvenue dans le jeu 2584 !" layoutX="32.0" layoutY="14.0" ></Label>
+                <Label text="Veuillez choisir un pseudonyme: " layoutX="32.0" layoutY="64.0"></Label>
+                <Button fx:id="startButton" text="Start" onMouseClicked="#mouseClicked" alignment="center" contentDisplay="center"></Button>
             </children>
         </Pane>
     </children>

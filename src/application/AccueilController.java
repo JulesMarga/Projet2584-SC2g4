@@ -5,11 +5,14 @@
  */
 package application;
 
+import test.PartieGUI;
 import java.awt.Button;
+import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 /**
@@ -21,9 +24,16 @@ public class AccueilController implements Initializable{
     private Pane fond;
     @FXML
     private Button buttonStart;
+    @FXML
+    private Label labelHello;
     
     @Override
     public void initialize(URL url,ResourceBundle rb){
-        
+        System.out.println("Le contrôleur initialise la vue");
+    }
+    
+    public void mouseClicked(MouseEvent me){
+        System.out.println("cliqué!");
+        PartieGUI.main(new String[]{""});
     }
 }

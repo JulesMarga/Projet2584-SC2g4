@@ -7,14 +7,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class AccueilGUI extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root2 = FXMLLoader.load(getClass().getResource("Accueil.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Accueil.fxml"));
 
-        Scene scene = new Scene(root2);
+        Scene scene = new Scene(root);
         boolean add = scene.getStylesheets().add("application/styles.css");
 
         stage.setScene(scene);

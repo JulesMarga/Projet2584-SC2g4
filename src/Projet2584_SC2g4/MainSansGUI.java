@@ -24,7 +24,7 @@ public class MainSansGUI implements Parametres {
         
         if(mode.equals("g")){
             //On lance l'interface graphique
-            application.Main.main(args);
+            application.AccueilGUI.main(args);
         }
         else{
             //On continue dans la console

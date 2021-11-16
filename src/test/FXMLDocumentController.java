@@ -1,4 +1,4 @@
-package application; 
+package test; 
 
 import Projet2584_SC2g4.Partie2584;
 import java.net.URL;
@@ -47,7 +47,7 @@ public class FXMLDocumentController implements Initializable{
     }
     
     public void keyPressed(KeyEvent ke) {
-        System.out.println("Vous avez appuyer sur une touche avec succès, félicitations");
+        System.out.println("Vous avez appuyé sur une touche avec succès, félicitations");
     }
     
 }
