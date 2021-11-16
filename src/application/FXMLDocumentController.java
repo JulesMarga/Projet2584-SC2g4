@@ -44,7 +44,7 @@ public class FXMLDocumentController implements Initializable{
     }
     
     public void keyPressed(KeyEvent ke) {
-        System.out.println("Vous avez appuyez sur une touche avec succès, félicitations");
+        System.out.println("Vous avez appuyer sur une touche avec succès, félicitations");
     }
     
 }

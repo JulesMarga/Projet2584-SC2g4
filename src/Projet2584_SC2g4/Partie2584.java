@@ -156,10 +156,6 @@ public class Partie2584 implements Parametres {
     public static void main(String[] args) {
         // TODO code application logic here
     }
-
-
-
-    
     
     
     //Autres méthodes
