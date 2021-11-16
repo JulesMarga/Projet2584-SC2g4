@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AccueilController">
+    <children>
+        <Pane fx:id="fond" style="-fx-background-color: yellow;" prefHeight="613.0" prefWidth="500.0">
+            <children>
+                <Button fx:id="buttonStart" layoutX="178.0" layoutY="126.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Start" onclick="#lancerPartie" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

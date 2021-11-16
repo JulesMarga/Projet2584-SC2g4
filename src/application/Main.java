@@ -9,18 +9,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private Partie2584 p;
-
-    public void setPartie(Partie2584 p) {
-        this.p = p;
-    }
-
     @Override
     public void start(Stage stage) throws Exception {
-        //System.out.println(getClass().getResource("FXMLDocument.fxml").toString());
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root2 = FXMLLoader.load(getClass().getResource("Accueil.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root2);
         boolean add = scene.getStylesheets().add("application/styles.css");
 
         stage.setScene(scene);
