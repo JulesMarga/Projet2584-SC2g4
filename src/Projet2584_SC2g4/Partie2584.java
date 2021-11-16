@@ -34,8 +34,7 @@ public class Partie2584 implements Parametres {
         
         //affichage du pseudo, du score, de la valeur max par rapport à l'objectif
         System.out.println("\n"+j.getPseudo());
-        System.out.println("score : " + g.getScore());
-        System.out.println("valeur max : " + g.getValeurMax() + " / objectif : " + OBJECTIF);
+
         
         //ajout d'une nouvelle case
         if(g.getValeurMax()==0){
@@ -51,7 +50,8 @@ public class Partie2584 implements Parametres {
             }
         }
         else if(i==2 && this.getJ1().getGrille().getGrille().size()==1){
-            //ne rien faire
+            /* Ne rien faire: cas particulier du premier tour du J2
+            */
         }
         else{
             g.nouvelleCase(false); //Sinon, 3 chances sur 4 d'avoir un 1, 1 chance sur 4 d'avoir un 2
@@ -59,6 +59,8 @@ public class Partie2584 implements Parametres {
         
         //Affichage de la grille
         System.out.println(g);
+        System.out.println("\nscore: "+g.getScore());
+        System.out.println("valeur max: "+g.getValeurMax()+"/"+OBJECTIF);
         
         //choix du déplacement
         Scanner sc = new Scanner(System.in);
@@ -106,17 +108,27 @@ public class Partie2584 implements Parametres {
 
         boolean continuer = true; //initialisation
 
+
         while (continuer) {
+            
             
             //On commence par le joueur 1, s'il peut encore jouer
             if(!this.joueur1.getGrille().partieFinie()){
                 this.deroulerTour(this.joueur1,1);
+                //objAtteint = grille.valMax>objectif
+                if(this.joueur1.getGrille().getValeurMax()==OBJECTIF){
+                    //
+                }
             }
+            
             
             //Puis c'est au tour du joueur 2, s'il existe et s'il peut encore jouer
             if(this.joueur2!=null){
                 if(!this.joueur2.getGrille().partieFinie()){
                     this.deroulerTour(this.joueur2,2);
+                    if(this.joueur2.getGrille().getValeurMax()==OBJECTIF){
+                        //
+                    }
                 }
             }
             

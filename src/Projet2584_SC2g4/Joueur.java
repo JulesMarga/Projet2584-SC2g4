@@ -15,6 +15,7 @@ public class Joueur {
     private Grille grille;
     private int score;
 
+
     //Constructeur
     public Joueur(String p){
         this.pseudo=p;
