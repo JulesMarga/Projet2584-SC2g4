@@ -20,6 +20,7 @@ public class Partie2584 implements Parametres {
     public void setJ1(Joueur j){
         this.joueur1=j;
     }
+
     public void setJ2(Joueur j){
         this.joueur2=j;
     }
@@ -48,9 +49,9 @@ public class Partie2584 implements Parametres {
                     this.joueur2.getGrille().setValeurMax(1);
                 }  
             }
-            else{
-                //ne rien faire puisque la case a déjà été ajoutée par clonage
-            }
+        }
+        else if(i==2 && this.getJ1().getGrille().getGrille().size()==1){
+            //ne rien faire
         }
         else{
             g.nouvelleCase(false); //Sinon, 3 chances sur 4 d'avoir un 1, 1 chance sur 4 d'avoir un 2
