@@ -10,14 +10,20 @@ import javafx.stage.Stage;
 public class AccueilGUI extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Accueil.fxml"));
+    public void start(Stage stageAccueil) throws Exception {
+        
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
+        Parent root = myLoader.load();
 
+        Controller controller = (Controller) myLoader.getController();
+        
+        controller.setPrevStage(stageAccueil);
+        
         Scene scene = new Scene(root);
         boolean add = scene.getStylesheets().add("application/styles.css");
 
-        stage.setScene(scene);
-        stage.show();
+        stageAccueil.setScene(scene);
+        stageAccueil.show();
 
         System.out.println("Lancement du mode graphique du jeu 2584");
 

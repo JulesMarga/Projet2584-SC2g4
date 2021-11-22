@@ -6,13 +6,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AccueilController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
     <children>
         <Pane fx:id="fond" style="-fx-background-color: yellow;" prefHeight="613.0" prefWidth="500.0">
             <children>
-                <Label fx:id="labelHello" text="Bienvenue dans le jeu 2584 !" layoutX="32.0" layoutY="14.0" ></Label>
-                <Label text="Veuillez choisir un pseudonyme: " layoutX="32.0" layoutY="64.0"></Label>
-                <Button fx:id="startButton" text="Start" onMouseClicked="#mouseClicked" alignment="center" contentDisplay="center"></Button>
+                <Label fx:id="labelHello" text="Bienvenue dans le jeu 2584 !" layoutX="32.0" layoutY="14.0" alignment="center" contentDisplay="center"></Label>
+                <Label text="Combien de joueurs souhaitent jouer?" layoutX="32.0" layoutY="64.0"></Label>
+                <Button fx:id="p1Button" text="1 joueur" onMouseClicked="#mouseClicked1" alignment="center" contentDisplay="center" layoutY="90.0" layoutX="20.0"></Button>
+                <Button fx:id="p2Button" text="2 joueurs" onMouseClicked="#mouseClicked2" alignment="center" contentDisplay="center" layoutY="90.0" layoutX="120.0"></Button>
+                
+                <Label text="Veuillez choisir un pseudonyme: " layoutX="32.0" layoutY="114.0" contentDisplay="center"></Label>
+                <TextField fx:id="pseudo1" text="pseudo:" layoutX="32.0" layoutY="164.0"></TextField>
+                <Button fx:id="startButton" text="Start" onMouseClicked="#mouseClicked" alignment="center" contentDisplay="center" layoutY="160.0"></Button>
             </children>
         </Pane>
     </children>

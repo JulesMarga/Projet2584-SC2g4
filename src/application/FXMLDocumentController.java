@@ -1,4 +1,4 @@
-package test; 
+package application; 
 
 import Projet2584_SC2g4.Partie2584;
 import java.net.URL;
@@ -13,7 +13,14 @@ import javafx.scene.layout.Pane;
 
 public class FXMLDocumentController implements Initializable{
     
-    private Partie2584 partie = new Partie2584();
+    private Partie2584 partie;
+    
+    public Partie2584 getPartie(){
+        return this.partie;
+    }
+    public void setPartie(Partie2584 p){
+        this.partie=p;
+    }
     
     @FXML
     private Label score; // value will be injected by the FXMLLoader
@@ -44,6 +51,14 @@ public class FXMLDocumentController implements Initializable{
         pane.setLayoutY(y);
         pane.setVisible(true);
         c.setVisible(true);
+        
+        //Voir comment récupérer des infos depuis la fenêtre précédente
+        if(partie==null){
+            System.out.println("partie vide");
+        }
+        else{
+            System.out.println("partie créée");
+        }
     }
     
     public void keyPressed(KeyEvent ke) {

@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="613.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FXMLDocumentController">
     <children>
-        <Pane fx:id="fond" onKeyPressed="#keyPressed" prefHeight="613.0" prefWidth="445.0">
+        <Pane fx:id="fond" prefHeight="613.0" onKeyPressed="#keyPressed" prefWidth="445.0">
             <children>
             <GridPane fx:id="grille" gridLinesVisible="true" layoutX="24.0" layoutY="191.0" prefHeight="397.0" prefWidth="397.0">
               <columnConstraints>

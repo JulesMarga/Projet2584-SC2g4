@@ -29,6 +29,9 @@ public class Joueur {
     public void setScore(int s){
         this.score=s;
     }
+    public void setPseudo(String p){
+        this.pseudo=p;
+    }
     
     //Getters
     public String getPseudo(){
