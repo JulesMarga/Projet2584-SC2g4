@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -33,7 +34,7 @@ public class Controller implements Initializable{
     @FXML
     private Pane fond;
     @FXML
-    private Button buttonStart;
+    private Button startButton;
     @FXML
     private Button p1Button;
     @FXML
@@ -58,6 +59,7 @@ public class Controller implements Initializable{
     
     public void mouseClicked(MouseEvent me) throws IOException{
         System.out.println("cliqué!");
+        startButton.setDisable(true);
         
         //création d'une nouvelle stage pour le jeu
         Stage stageJeu = new Stage();
@@ -65,11 +67,12 @@ public class Controller implements Initializable{
         
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
         Pane root=myLoader.load();
-
+        
+        //On récupère le controller de la nouvelle scene
         FXMLDocumentController controller = (FXMLDocumentController) myLoader.getController();
         
         Partie2584 p = new Partie2584();
-        p.setJ1(new Joueur("testpeudo"));
+        p.setJ1(new Joueur("testpseudo"));
         controller.setPartie(p); //Pourquoi ça ne marche pas ??
         
         
@@ -100,7 +103,7 @@ public class Controller implements Initializable{
         tfield.setLayoutY(label.getLayoutY());
         fond.getChildren().add(tfield);tfield.setVisible(true);
  
-        
+        p1Button.setDisable(true);
     }
     
      public void mouseClicked2(MouseEvent me){
@@ -108,14 +111,32 @@ public class Controller implements Initializable{
         System.out.println("2j");
         
         Label label1 = new Label("pseudo joueur 1:");
+        label1.setLayoutX(p1Button.getLayoutX());
+        label1.setLayoutY(p2Button.getLayoutY()+30);
+        afficher(label1);
+        
         TextField tfield1 = new TextField();
+        placerTextField(tfield1,label1);
+        afficher(tfield1);
         
-        Label label2=new Label("pseudo joueur 2:");
-        TextField tfield2=new TextField();
+        Label label2 = new Label("pseudo joueur 2:");
+        label2.setLayoutX(p1Button.getLayoutX());
+        label2.setLayoutY(p2Button.getLayoutY()+80);
+        afficher(label2);
         
-        tfield1.setVisible(true);
-        label1.setVisible(true);
-        tfield2.setVisible(true);
-        label2.setVisible(true);
+        TextField tfield2 = new TextField();
+        placerTextField(tfield2,label2);
+        afficher(tfield2);
+
+        p2Button.setDisable(true);
     }
+     
+     public static void placerTextField(TextField t,Label l){
+         t.setLayoutX(l.getLayoutX()+l.getText().length()*7+30);
+         t.setLayoutY(l.getLayoutY());
+     }
+     public void afficher(Node n){
+         fond.getChildren().add(n);
+         n.setVisible(true);
+     }
 }
