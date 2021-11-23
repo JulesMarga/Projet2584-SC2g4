@@ -11,12 +11,12 @@ public class Grille implements Parametres, Cloneable {
     private int valeurMax = 0; //La valeur maximale contenue par la grille à un instant t
     private int score = 0;
     private boolean deplacement;
-    
+
     //Setters
-    public void setValeurMax(int i){
-        this.valeurMax=i;
+    public void setValeurMax(int i) {
+        this.valeurMax = i;
     }
-    
+
     //Getters
     public HashSet<Case> getGrille() {
         return grille;
@@ -29,13 +29,12 @@ public class Grille implements Parametres, Cloneable {
     public String getScore() {
         return String.valueOf(score);
     }
-    
+
     //Constructeur
     public Grille() {
         this.grille = new HashSet<>();
     }
-    
-    
+
     //Méthodes redéfinies
     @Override
     public String toString() {
@@ -49,7 +48,7 @@ public class Grille implements Parametres, Cloneable {
         }
         return result;
     }
-    
+
     @Override
     public Object clone() {
         Grille gril = new Grille();
@@ -61,7 +60,7 @@ public class Grille implements Parametres, Cloneable {
         }
         return gril;
     }
-    
+
     //Autres méthodes
     public String toHTML() {
         int[][] tableau = new int[TAILLE][TAILLE];
@@ -75,8 +74,6 @@ public class Grille implements Parametres, Cloneable {
         result += "</html>";
         return result;
     }
-
-    
 
     public boolean partieFinie() {
         if (this.grille.size() < TAILLE * TAILLE) {
@@ -197,20 +194,10 @@ public class Grille implements Parametres, Cloneable {
         return result;
     }
 
-    public void victory() {
-        System.out.println("Bravo ! Vous avez atteint " + this.valeurMax);
-        System.exit(0);
-    }
-
-    public void gameOver() {
-        System.out.println("La partie est finie. Votre score est " + this.valeurMax);
-        System.exit(1);
-    }
-
     public boolean nouvelleCase(boolean b) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
         //On commence par regarder s'il reste de la place dans la grille pour une nouvelle case
         if (this.grille.size() < TAILLE * TAILLE) {
-            
+
             //Détermination aléatoire de la valeur de la nouvelle case
             int valeur;
             Random ra = new Random();
@@ -218,15 +205,14 @@ public class Grille implements Parametres, Cloneable {
                 valeur = 1; //début de partie: on veut seulement avoir un 1
             } else {
                 int alea = ra.nextInt(4); //nombre entier aleatoire entre 0 et 3
-                if (alea== 0) {
+                if (alea == 0) {
                     valeur = 2; //1 chance sur 4 que le nombre soit 0
                 } else {
                     valeur = 1; //3 chance sur 4 que le nombre soit different de 0
                 }
-            //75% de chances que la nouvelle case soit un 1, 25% de chances que ça soit un 2
+                //75% de chances que la nouvelle case soit un 1, 25% de chances que ça soit un 2
             }
-            
-                        
+
             //On va récupérer les cases encore libres
             ArrayList<Case> casesLibres = new ArrayList<>();
             // on crée toutes les cases encore libres
@@ -242,7 +228,7 @@ public class Grille implements Parametres, Cloneable {
             Case nouvelleCase = casesLibres.get(ra.nextInt(casesLibres.size()));
             nouvelleCase.setGrille(this);
             this.grille.add(nouvelleCase);
-            if (nouvelleCase.getValeur()>this.valeurMax) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 2 et que l'ancien max était 1
+            if (nouvelleCase.getValeur() > this.valeurMax) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 2 et que l'ancien max était 1
                 this.valeurMax = nouvelleCase.getValeur();
             }
             return true; //L'ajout a bien été effectué
@@ -251,6 +237,4 @@ public class Grille implements Parametres, Cloneable {
         }
     }
 
-    
-    
 }
