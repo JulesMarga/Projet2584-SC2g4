@@ -104,30 +104,31 @@ public class Partie2584 implements Parametres {
 
     }
 
-    public void deroulement() {
+ public void deroulement() {
 
         boolean continuer = true; //initialisation
-
-
+        boolean objAtteint1 = false; //Boolean qui vérifie si l'objetif est atteint par le Joueur 1  
+        boolean objAtteint2 = false; //Boolean qui vérifie si l'objetif est atteint par le Joueur 2          
+                
         while (continuer) {
-            
             
             //On commence par le joueur 1, s'il peut encore jouer
             if(!this.joueur1.getGrille().partieFinie()){
                 this.deroulerTour(this.joueur1,1);
-                //objAtteint = grille.valMax>objectif
-                if(this.joueur1.getGrille().getValeurMax()==OBJECTIF){
-                    //
+                if((this.joueur1.getGrille().getValeurMax() == OBJECTIF) && (objAtteint1 == false)){ 
+                    System.out.println("Bravo vous avez atteint l'objectif de:" + OBJECTIF + "bravo !");
+                    objAtteint1 = true; 
                 }
+                       
             }
-            
             
             //Puis c'est au tour du joueur 2, s'il existe et s'il peut encore jouer
             if(this.joueur2!=null){
                 if(!this.joueur2.getGrille().partieFinie()){
                     this.deroulerTour(this.joueur2,2);
-                    if(this.joueur2.getGrille().getValeurMax()==OBJECTIF){
-                        //
+                    if((this.joueur1.getGrille().getValeurMax() == OBJECTIF) && (objAtteint2 == false)){ 
+                    System.out.println("Bravo vous avez atteint l'objectif de:" + OBJECTIF + "bravo !");
+                    objAtteint2 = true; 
                     }
                 }
             }
