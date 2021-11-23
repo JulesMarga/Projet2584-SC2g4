@@ -1,7 +1,5 @@
 package Projet2584_SC2g4;
 
-import java.util.ArrayList;
-
 public interface Parametres {
 
     static final int HAUT = 1;

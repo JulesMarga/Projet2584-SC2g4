@@ -80,6 +80,7 @@ public class Controller implements Initializable{
 
         
         Scene scene = new Scene(root);
+        scene.getStylesheets().add("application/styles.css");
         stageJeu.setScene(scene);
 
         this.prevStage.close();
