@@ -89,16 +89,18 @@ public class Controller implements Initializable{
      */
     public void mouseClicked1(MouseEvent me){
         p2Button.setDisable(true);
-        System.out.println("1j");
-        
+
         Label label = new Label("pseudo:");
-        TextField tfield = new TextField();
-        fond.getChildren().add(label); fond.getChildren().add(tfield);
+        label.setLayoutX(p1Button.getLayoutX());
+        label.setLayoutY(p1Button.getLayoutY()+30);
+        fond.getChildren().add(label);label.setVisible(true);
         
-        tfield.setVisible(true);
-        label.setLayoutX(30.0);
-        label.setLayoutY(100.0);
-        label.setVisible(true);
+        TextField tfield = new TextField();
+        tfield.setLayoutX(p1Button.getLayoutX()+50);
+        tfield.setLayoutY(label.getLayoutY());
+        fond.getChildren().add(tfield);tfield.setVisible(true);
+ 
+        
     }
     
      public void mouseClicked2(MouseEvent me){
