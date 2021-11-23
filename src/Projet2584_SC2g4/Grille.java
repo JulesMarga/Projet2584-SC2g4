@@ -1,5 +1,6 @@
 package Projet2584_SC2g4;
 
+import application.FXMLDocumentController;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -206,7 +207,7 @@ public class Grille implements Parametres, Cloneable {
         System.exit(1);
     }
 
-    public int nouvelleCase(boolean b) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
+    public boolean nouvelleCase(boolean b, boolean gui, FXMLDocumentController controller) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
         //On commence par regarder s'il reste de la place dans la grille pour une nouvelle case
         if (this.grille.size() < TAILLE * TAILLE) {
 
@@ -242,10 +243,27 @@ public class Grille implements Parametres, Cloneable {
             this.grille.add(nouvelleCase);
             if (nouvelleCase.getValeur() > this.valeurMax) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 2 et que l'ancien max était 1
                 this.valeurMax = nouvelleCase.getValeur();
+            
+            //ajout en mode graphique
+            if(gui){
+                Pane p = new Pane();
+                Label l = new Label(Integer.toString(valeur));
+                p.getStyleClass().add("pane");
+                l.getStyleClass().add("tuile");
+                
+                p.setLayoutX(25+nouvelleCase.getX()*100);
+                p.setLayoutY(200+nouvelleCase.getY()*100);
+                
+                controller.getFond().getChildren().add(p);
+                p.getChildren().add(l);
+                p.setVisible(true);
+                l.setVisible(true);
+                
             }
-            return valeur; //L'ajout a bien été effectué
+            }
+            return true; //L'ajout a bien été effectué
         } else {
-            return 0; //L'ajout ne s'est pas effectué: grille déjà remplie
+            return false; //L'ajout ne s'est pas effectué: grille déjà remplie
         }
     }
 

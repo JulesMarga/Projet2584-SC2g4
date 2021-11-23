@@ -26,6 +26,10 @@ public class FXMLDocumentController implements Initializable {
     public void setPartie(Partie2584 p) {
         this.partie = p;
     }
+    
+    public Pane getFond(){
+        return this.fond;
+    }
 
     @FXML
     private Label scoreLabel; // value will be injected by the FXMLLoader
@@ -38,8 +42,8 @@ public class FXMLDocumentController implements Initializable {
 
     private final Pane pane = new Pane(); // panneau utilisé pour dessiner une tuile "1"
     private final Label c = new Label("1");
-    private int x = 24, y = 191;
-    private int objectifx = 24, objectify = 191;
+    private int x = 25, y = 200;
+    private int objectifx = 25, objectify = 200;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -51,42 +55,44 @@ public class FXMLDocumentController implements Initializable {
         partie.setJ1(new Joueur("Clémentine"));
         pseudoLabel.setText(partie.getJ1().getPseudo());
         
+        partie.getJ1().getGrille().nouvelleCase(false,true,this);
         
-        // utilisation de styles pour la grille et la tuile (voir styles.css)
-        pane.getStyleClass().add("pane");
-        c.getStyleClass().add("tuile");
-        grille.getStyleClass().add("gridpane");
-        GridPane.setHalignment(c, HPos.CENTER);
-        fond.getChildren().add(pane);
-        pane.getChildren().add(c);
-
-        // on place la tuile en précisant les coordonnées (x,y) du coin supérieur gauche
-        pane.setLayoutX(x);
-        pane.setLayoutY(y);
-        pane.setVisible(true);
-        c.setVisible(true);
-
-        //Voir comment récupérer des infos depuis la fenêtre précédente
-        if (partie == null) {
-            System.out.println("partie vide");
-        } else {
-            System.out.println("partie créée");
-        }
         
-        partie.creerNouvelleCaseGraphique();
+//        // utilisation de styles pour la grille et la tuile (voir styles.css)
+//        pane.getStyleClass().add("pane");
+//        c.getStyleClass().add("tuile");
+//        grille.getStyleClass().add("gridpane");
+//        GridPane.setHalignment(c, HPos.CENTER);
+//        fond.getChildren().add(pane);
+//        pane.getChildren().add(c);
+//
+//        // on place la tuile en précisant les coordonnées (x,y) du coin supérieur gauche
+//        pane.setLayoutX(x);
+//        pane.setLayoutY(y);
+//        pane.setVisible(true);
+//        c.setVisible(true);
+//
+//        //Voir comment récupérer des infos depuis la fenêtre précédente
+//        if (partie == null) {
+//            System.out.println("partie vide");
+//        } else {
+//            System.out.println("partie créée");
+//        }
+        
+        
     }
 
     @FXML
     public void keyPressed(KeyEvent ke) {
         String touche = ke.getText();
         if (touche.compareTo("q") == 0) { // utilisateur appuie sur "q" pour envoyer la tuile vers la gauche
-            if (objectifx > 24) { // possible uniquement si on est pas dans la colonne la plus à gauche
-                objectifx -= (int) 397 / 4; // on définit la position que devra atteindre la tuile en abscisse (modèle). Le thread se chargera de mettre la vue à jour
+            if (objectifx > 25) { // possible uniquement si on est pas dans la colonne la plus à gauche
+                objectifx -= 100; // on définit la position que devra atteindre la tuile en abscisse (modèle). Le thread se chargera de mettre la vue à jour
                 scoreLabel.setText(Integer.toString(Integer.parseInt(scoreLabel.getText()) + 1)); // mise à jour du compteur de mouvement
             }
         } else if (touche.compareTo("d") == 0) { // utilisateur appuie sur "d" pour envoyer la tuile vers la droite
-            if (objectifx < (int) 445 - 2 * 397 / 4 - 24) { // possible uniquement si on est pas dans la colonne la plus à droite (taille de la fenêtre - 2*taille d'une case - taille entre la grille et le bord de la fenêtre)
-                objectifx += (int) 397 / 4;
+            if (objectifx < 325) { // possible uniquement si on est pas dans la colonne la plus à droite (taille de la fenêtre - 2*taille d'une case - taille entre la grille et le bord de la fenêtre)
+                objectifx += 100;
                 scoreLabel.setText(Integer.toString(Integer.parseInt(scoreLabel.getText()) + 1));
             }
         }
