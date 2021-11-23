@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 
 public class Grille implements Parametres, Cloneable {
 
@@ -207,10 +209,9 @@ public class Grille implements Parametres, Cloneable {
         System.exit(1);
     }
 
-    public boolean nouvelleCase(boolean b) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
+    public int nouvelleCase(boolean b) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
         //On commence par regarder s'il reste de la place dans la grille pour une nouvelle case
         if (this.grille.size() < TAILLE * TAILLE) {
-            
             //Détermination aléatoire de la valeur de la nouvelle case
             int valeur;
             Random ra = new Random();
@@ -245,9 +246,9 @@ public class Grille implements Parametres, Cloneable {
             if (nouvelleCase.getValeur()>this.valeurMax) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 2 et que l'ancien max était 1
                 this.valeurMax = nouvelleCase.getValeur();
             }
-            return true; //L'ajout a bien été effectué
+            return valeur; //L'ajout a bien été effectué
         } else {
-            return false; //L'ajout ne s'est pas effectué: grille déjà remplie
+            return 0; //L'ajout ne s'est pas effectué: grille déjà remplie
         }
     }
 
