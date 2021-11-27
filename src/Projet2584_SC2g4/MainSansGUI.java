@@ -30,8 +30,8 @@ public class MainSansGUI implements Parametres {
             //Création de la partie
             Partie2584 p = new Partie2584();
             p.setGUI(false);
-            
-            Scanner sc2 =  new Scanner(System.in);
+
+            Scanner sc2 = new Scanner(System.in);
             System.out.println("Souhaitez-vous jouer en mode 1 joueur (1) ou 2 joueurs (2) ?");
             int rep = 0;
 

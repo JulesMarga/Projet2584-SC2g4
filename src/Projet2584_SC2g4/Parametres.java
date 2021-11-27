@@ -8,8 +8,8 @@ public interface Parametres {
     static final int GAUCHE = -2;
     static final int TAILLE = 4;
     static final int OBJECTIF = 8;
-    
-    static final int x=24;
-    static final int y=191;
-    
+
+    static final int x = 24;
+    static final int y = 191;
+
 }

@@ -25,7 +25,8 @@ public class Partie2584 implements Parametres {
     public boolean getGUI() {
         return this.gui;
     }
-    public FXMLDocumentController getController(){
+
+    public FXMLDocumentController getController() {
         return controller;
     }
 
@@ -41,8 +42,9 @@ public class Partie2584 implements Parametres {
     public void setGUI(boolean b) {
         this.gui = b;
     }
-    public void setController(FXMLDocumentController c){
-        this.controller=c;
+
+    public void setController(FXMLDocumentController c) {
+        this.controller = c;
     }
 
     /**
@@ -56,31 +58,32 @@ public class Partie2584 implements Parametres {
         if (this.gui) {
             //affichage du pseudo, du score, de la valeur max par rapport à l'objectif
             System.out.println("\n" + j.getPseudo());
-        } 
+        }
 
         //ajout d'une nouvelle case
         if (g.getValeurMax() == 0) {
-            /*Cas particulier: si le jeu est à deux joueurs, les deux doivent commencer avec la même grille*/
+            //Cas particulier: si le jeu est à deux joueurs, les deux doivent commencer avec la même grille
             if (i == 1) {
-                g.nouvelleCase(true,this.gui,this.controller);
+                g.nouvelleCase(true, this.gui, this.controller);
+                g.nouvelleCase(false, this.gui, this.controller);
                 if (this.joueur2 != null) {
                     //On va créer un clone de la grille pour que le deuxième joueur ait la même par la suite
                     Grille clone = (Grille) g.clone();
                     this.joueur2.setGrille(clone);
-                    this.joueur2.getGrille().setValeurMax(1);
+                    this.joueur2.getGrille().setValeurMax(g.getValeurMax());
                 }
             }
-        } else if (i == 2 && this.getJ1().getGrille().getGrille().size() == 1) {
-            /* Ne rien faire: cas particulier du premier tour du J2
-             */
+        } else if (i == 2 && this.joueur1.getGrille().getGrille().size() == 2 && this.joueur1.getGrille().getScore() == 0) {
+            // Ne rien faire: cas particulier du premier tour du J2
         } else {
-            g.nouvelleCase(false,this.gui,this.controller); //Sinon, 3 chances sur 4 d'avoir un 1, 1 chance sur 4 d'avoir un 2
+            g.nouvelleCase(false, this.gui, this.controller); //Sinon, 3 chances sur 4 d'avoir un 1, 1 chance sur 4 d'avoir un 2
         }
 
         //Affichage de la grille
+        System.out.println("\n" + j.getPseudo());
         System.out.println(g);
-        System.out.println("\nscore: " + g.getScore());
-        System.out.println("valeur max: " + g.getValeurMax() + "/" + OBJECTIF);
+        System.out.println("score: " + g.getScore());
+        System.out.println("valeur max: " + g.getValeurMax() + ", objectif: " + OBJECTIF);
 
         //choix du déplacement
         Scanner sc = new Scanner(System.in);
@@ -118,43 +121,30 @@ public class Partie2584 implements Parametres {
             //On effectue le déplacement demandé
             deplacementEffectue = g.lanceurDeplacerCases(direction);
         }
-
-        //On affiche la grille modifiée
-        System.out.println(g);
-
     }
 
     public void deroulement() {
 
         boolean continuer = true; //initialisation
-        boolean objAtteint1 = false; //Boolean qui vérifie si l'objetif est atteint par le Joueur 1  
-        boolean objAtteint2 = false; //Boolean qui vérifie si l'objetif est atteint par le Joueur 2          
 
         while (continuer) {
 
             //On commence par le joueur 1, s'il peut encore jouer
             if (!this.joueur1.getGrille().partieFinie()) {
                 this.deroulerTour(this.joueur1, 1);
-                if ((this.joueur1.getGrille().getValeurMax() == OBJECTIF) && (objAtteint1 == false)) {
-                    System.out.println("Bravo vous avez atteint l'objectif de:" + OBJECTIF + "bravo !");
-                    objAtteint1 = true;
-                }
-
             }
 
-            //Puis c'est au tour du joueur 2, s'il existe et s'il peut encore jouer
-            if (this.joueur2 != null) {
+            continuer = !this.joueur1.getGrille().partieFinie(); //si le joueur 1 a fini, le joueur 2 ne jouera pas son tour
+
+            //Puis c'est au tour du joueur 2, s'il existe et s'il peut encore jouer et que le joueur 1 n'a pas déjà fini à ce tour
+            if (this.joueur2 != null && continuer) {
                 if (!this.joueur2.getGrille().partieFinie()) {
                     this.deroulerTour(this.joueur2, 2);
-                    if ((this.joueur1.getGrille().getValeurMax() == OBJECTIF) && (objAtteint2 == false)) {
-                        System.out.println("Bravo vous avez atteint l'objectif de:" + OBJECTIF + "bravo !");
-                        objAtteint2 = true;
-                    }
                 }
             }
-
-            continuer = !this.partieFinie(); //On continue ssi l'un des deux joueurs peut encore jouer
+            continuer = !this.partieFinie(); //On s'arrête si l'un des joueurs ne peut plus jouer
         }
+        messageFin();
     }
 
     public void messageFin() {
@@ -165,37 +155,31 @@ public class Partie2584 implements Parametres {
                 System.out.println(this.joueur1.getPseudo() + ", vous ne pouvez plus déplacer de tuiles, vous avez perdu !");
             }
         } else {
-            //Joueur 1
-            if (this.joueur1.getGrille().getValeurMax() >= OBJECTIF) {
-                System.out.println(this.joueur1.getPseudo() + " a obtenu la tuile " + OBJECTIF + ", le joueur 1 a gagné !");
+            
+            if (this.joueur1.getGrille().partieFinie()) {
+                if (this.joueur1.getGrille().getValeurMax() >= OBJECTIF) {
+                    System.out.println(this.joueur1.getPseudo() + " a obtenu la tuile " + OBJECTIF + ", " + this.joueur1.getPseudo() + " a gagné !");
+                } else {
+                    System.out.println(this.joueur1.getPseudo() + " ne peut plus déplacer de tuiles, " + this.joueur2.getPseudo() + " a gagné !");
+                }
             } else {
-                System.out.println(this.joueur1.getPseudo() + " ne peut plus déplacer de tuiles, le joueur 2 a gagné !");
-
-            }
-
-            //Joueur 2
-            if (this.joueur2.getGrille().getValeurMax() >= OBJECTIF) {
-                System.out.println(this.joueur2.getPseudo() + " a obtenu la tuile " + OBJECTIF + ", le joueur 2 a gagné !");
-            } else {
-                System.out.println(this.joueur2.getPseudo() + " ne peut plus déplacer de tuiles, le joueur 1 a gagné !");
-
+                if (this.joueur2.getGrille().getValeurMax() >= OBJECTIF) {
+                    System.out.println(this.joueur2.getPseudo() + " a obtenu la tuile " + OBJECTIF + ", " + this.joueur2.getPseudo() + " a gagné !");
+                } else {
+                    System.out.println(this.joueur2.getPseudo() + " ne peut plus déplacer de tuiles, " + this.joueur1.getPseudo() + " a gagné !");
+                }
             }
         }
     }
 
-    //pourquoi est-ce que y'a un main là dedans ????
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-
     //Autres méthodes
     public boolean partieFinie() throws NullPointerException {
-        //La partie est terminée lorsque les deux joueurs ont terminé leur partie
+        //La partie est terminée lorsque l'un des deux joueurs a terminé sa partie
         boolean fin1 = this.joueur1.getGrille().partieFinie();
         if (this.joueur2 == null) {
             return fin1;
         } else {
-            return fin1 && this.joueur2.getGrille().partieFinie();
+            return fin1 || this.joueur2.getGrille().partieFinie();
         }
     }
 
@@ -232,4 +216,5 @@ public class Partie2584 implements Parametres {
     public void creerNouvelleCaseGraphique() {
         this.getController().afficher(new Label("test"));
     }
+
 }

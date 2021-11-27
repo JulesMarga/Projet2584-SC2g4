@@ -29,8 +29,8 @@ public class Grille implements Parametres, Cloneable {
         return valeurMax;
     }
 
-    public String getScore() {
-        return String.valueOf(score);
+    public int getScore() {
+        return score;
     }
 
     //Constructeur
@@ -80,7 +80,11 @@ public class Grille implements Parametres, Cloneable {
 
     public boolean partieFinie() {
         if (this.grille.size() < TAILLE * TAILLE) {
-            return false;
+            if (this.valeurMax >= OBJECTIF) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             for (Case c : this.grille) {
                 for (int i = 1; i <= 2; i++) {
@@ -197,16 +201,6 @@ public class Grille implements Parametres, Cloneable {
         return result;
     }
 
-    public void victory() {
-        System.out.println("Bravo ! Vous avez atteint " + this.valeurMax);
-        System.exit(0);
-    }
-
-    public void gameOver() {
-        System.out.println("La partie est finie. Votre score est " + this.valeurMax);
-        System.exit(1);
-    }
-
     public boolean nouvelleCase(boolean b, boolean gui, FXMLDocumentController controller) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
         //On commence par regarder s'il reste de la place dans la grille pour une nouvelle case
         if (this.grille.size() < TAILLE * TAILLE) {
@@ -243,23 +237,23 @@ public class Grille implements Parametres, Cloneable {
             this.grille.add(nouvelleCase);
             if (nouvelleCase.getValeur() > this.valeurMax) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 2 et que l'ancien max était 1
                 this.valeurMax = nouvelleCase.getValeur();
-            
-            //ajout en mode graphique
-            if(gui){
-                Pane p = new Pane();
-                Label l = new Label(Integer.toString(valeur));
-                p.getStyleClass().add("pane");
-                l.getStyleClass().add("tuile");
-                
-                p.setLayoutX(25+nouvelleCase.getX()*100);
-                p.setLayoutY(200+nouvelleCase.getY()*100);
-                
-                controller.getFond().getChildren().add(p);
-                p.getChildren().add(l);
-                p.setVisible(true);
-                l.setVisible(true);
-                
-            }
+
+                //ajout en mode graphique
+                if (gui) {
+                    Pane p = new Pane();
+                    Label l = new Label(Integer.toString(valeur));
+                    p.getStyleClass().add("pane");
+                    l.getStyleClass().add("tuile");
+
+                    p.setLayoutX(25 + nouvelleCase.getX() * 100);
+                    p.setLayoutY(200 + nouvelleCase.getY() * 100);
+
+                    controller.getFond().getChildren().add(p);
+                    p.getChildren().add(l);
+                    p.setVisible(true);
+                    l.setVisible(true);
+
+                }
             }
             return true; //L'ajout a bien été effectué
         } else {
