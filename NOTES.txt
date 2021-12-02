@@ -1,0 +1,11 @@
+pour utiliser la sérialisation :
+
+1) avoir un bouton "Quitter" qui, avec la méthode mouseClicked, ferme le jeu est surtout fait :
+	SerializerPartie serial = new SerializerPartie();
+        serial.serialPartie(p);
+avec p = partie2584 en cours.
+
+2) au lancement du programme, vérifier l'existence du fichier (serial.partieExist()) et si oui :
+	Partie2584 p = serial.deserialPartie();
+
+SUREMENT PROBLEME AVEC LE DEROULEMENT, ENCORE A BOSSER

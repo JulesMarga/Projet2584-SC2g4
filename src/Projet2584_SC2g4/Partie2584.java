@@ -6,7 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
-public class Partie2584 implements Parametres {
+public class Partie2584 implements Parametres, java.io.Serializable {
 
     private Joueur joueur1;
     private Joueur joueur2; //éventuellement null

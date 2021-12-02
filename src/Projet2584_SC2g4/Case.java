@@ -1,6 +1,6 @@
 package Projet2584_SC2g4;
 
-public class Case implements Parametres, Cloneable {
+public class Case implements Parametres, Cloneable, java.io.Serializable {
 
     private int x, y, valeur; //La case a des coordonnées ainsi qu'une valeur
     private Grille grille; //La case est liée à une grille (relation d'agrégation)
@@ -93,7 +93,8 @@ public class Case implements Parametres, Cloneable {
                             return c;
                         }
                     }
-                }   break;
+                }
+                break;
             case BAS:
                 for (int i = this.y + 1; i < TAILLE; i++) {
                     for (Case c : grille.getGrille()) {
@@ -101,7 +102,8 @@ public class Case implements Parametres, Cloneable {
                             return c;
                         }
                     }
-                }   break;
+                }
+                break;
             case GAUCHE:
                 for (int i = this.x - 1; i >= 0; i--) {
                     for (Case c : grille.getGrille()) {
@@ -109,7 +111,8 @@ public class Case implements Parametres, Cloneable {
                             return c;
                         }
                     }
-                }   break;
+                }
+                break;
             case DROITE:
                 for (int i = this.x + 1; i < TAILLE; i++) {
                     for (Case c : grille.getGrille()) {
@@ -117,7 +120,8 @@ public class Case implements Parametres, Cloneable {
                             return c;
                         }
                     }
-                }   break;
+                }
+                break;
             default:
                 break;
         }

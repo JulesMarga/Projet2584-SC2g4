@@ -8,7 +8,7 @@ import java.util.Random;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
-public class Grille implements Parametres, Cloneable {
+public class Grille implements Parametres, Cloneable, java.io.Serializable {
 
     private HashSet<Case> grille; //Une grille est composée d'un ensemble de cases
     private int valeurMax = 0; //La valeur maximale contenue par la grille à un instant t

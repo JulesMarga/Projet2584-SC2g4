@@ -1,6 +1,6 @@
 package Projet2584_SC2g4;
 
-public class Joueur {
+public class Joueur implements java.io.Serializable {
 
     private String pseudo;
     private Grille grille;
