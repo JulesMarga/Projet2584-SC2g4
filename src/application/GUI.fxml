@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="fondGlobal" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GUIController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GUIController">
     <children>
         <BorderPane prefHeight="800.0" prefWidth="1000.0">
             <top>
@@ -33,20 +33,27 @@
                                 <Label fx:id="labelScore1" alignment="CENTER" contentDisplay="CENTER" text="score1:"></Label>
                             </children>
                         </VBox>
-                        <GridPane fx:id="grille1" layoutX="20.0" layoutY="200.0" gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0">
-                            <columnConstraints>
-                                <ColumnConstraints prefWidth="100.0" />
-                                <ColumnConstraints prefWidth="100.0" />
-                                <ColumnConstraints prefWidth="100.0" />
-                                <ColumnConstraints prefWidth="100.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints prefHeight="100.0" />
-                                <RowConstraints prefHeight="100.0" />
-                                <RowConstraints prefHeight="100.0" />
-                                <RowConstraints prefHeight="100.0" />
-                            </rowConstraints>
-                        </GridPane>
+                        <AnchorPane fx:id="fondGlobal" >
+                            <children>
+                                <GridPane fx:id="grille1" gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints minWidth="100.0" prefWidth="100.0" />
+                                        <ColumnConstraints minWidth="100.0" prefWidth="100.0" />
+                                        <ColumnConstraints minWidth="100.0" prefWidth="100.0" />
+                                        <ColumnConstraints minWidth="100.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="100.0" prefHeight="100.0" />
+                                        <RowConstraints minHeight="100.0" prefHeight="100.0" />
+                                        <RowConstraints minHeight="100.0" prefHeight="100.0" />
+                                        <RowConstraints minHeight="100.0" prefHeight="100.0" />
+
+                                    </rowConstraints>
+                                </GridPane>
+                            </children>
+                            
+                        </AnchorPane>
+                        
                         <Pane prefHeight="100.0" prefWidth="500.0">
                             
                         </Pane>
@@ -64,26 +71,26 @@
                         </VBox>
                         <GridPane fx:id="grille2" gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0">
                             <columnConstraints>
-                                <ColumnConstraints prefWidth="100.0" />
-                                <ColumnConstraints prefWidth="100.0" />
-                                <ColumnConstraints prefWidth="100.0" />
-                                <ColumnConstraints prefWidth="100.0" />
+                                <ColumnConstraints minWidth="100.0" prefWidth="100.0" />
+                                <ColumnConstraints minWidth="100.0" prefWidth="100.0" />
+                                <ColumnConstraints minWidth="100.0" prefWidth="100.0" />
+                                <ColumnConstraints minWidth="100.0" prefWidth="100.0" />
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints prefHeight="100.0" />
-                                <RowConstraints prefHeight="100.0" />
-                                <RowConstraints prefHeight="100.0" />
-                                <RowConstraints prefHeight="100.0" />
+                                <RowConstraints minHeight="100.0" prefHeight="100.0" />
+                                <RowConstraints minHeight="100.0" prefHeight="100.0" />
+                                <RowConstraints minHeight="100.0" prefHeight="100.0" />
+                                <RowConstraints minHeight="100.0" prefHeight="100.0" />
                             </rowConstraints>
                         </GridPane>
-                        <Pane prefHeight="100.0">
+                        <Pane prefHeight="100.0" prefWidth="500.0">
                             
                         </Pane>
                     </children>
                 </VBox>
             </right>
             <bottom>
-                <HBox spacing="2" prefHeight="100.0"></HBox>
+                <HBox spacing="2" prefHeight="100.0" prefWidth="1000.0"></HBox>
             </bottom>
         </BorderPane>
     </children>

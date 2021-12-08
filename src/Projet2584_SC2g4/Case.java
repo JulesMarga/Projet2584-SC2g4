@@ -1,9 +1,12 @@
 package Projet2584_SC2g4;
 
+import javafx.scene.layout.Pane;
+
 public class Case implements Parametres, Cloneable, java.io.Serializable {
 
     private int x, y, valeur; //La case a des coordonnées ainsi qu'une valeur
     private Grille grille; //La case est liée à une grille (relation d'agrégation)
+    private Pane guiCase;
 
     //Constructeur
     public Case(int abs, int ord, int v) {
@@ -15,6 +18,9 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
     //Setters
     public void setGrille(Grille g) {
         this.grille = g;
+    }
+    public void setGuiCase(Pane p){
+        this.guiCase=p;
     }
 
     public void setX(int x) {
@@ -30,6 +36,9 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
     }
 
     //Getters
+    public Pane getGuiCase(){
+        return this.guiCase;
+    }
     public int getX() {
         return this.x;
     }

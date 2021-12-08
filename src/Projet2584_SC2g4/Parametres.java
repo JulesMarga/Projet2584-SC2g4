@@ -11,5 +11,4 @@ public interface Parametres {
 
     static final int x = 24;
     static final int y = 191;
-
 }

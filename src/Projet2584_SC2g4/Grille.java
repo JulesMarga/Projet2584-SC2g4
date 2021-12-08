@@ -22,7 +22,8 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
     public void setValeurMax(int i) {
         this.valeurMax = i;
     }
-    public void setGuiGrille(GridPane grid){
+
+    public void setGuiGrille(GridPane grid) {
         this.guiGrille = grid;
     }
 
@@ -243,31 +244,32 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
             this.grille.add(nouvelleCase);
             if (nouvelleCase.getValeur() > this.valeurMax) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 2 et que l'ancien max était 1
                 this.valeurMax = nouvelleCase.getValeur();
+            }
 
-                //ajout en mode graphique
-                if (gui) {
-                    GridPane g= this.guiGrille;
-                    
-                    Pane p = new Pane();
-                    Label l = new Label(Integer.toString(valeur));
-                    p.getStyleClass().add("pane");
-                    l.getStyleClass().add("tuile");
-                    
-                    System.out.println(nouvelleCase.getX()+"-"+nouvelleCase.getY());
-                    
-                    p.setLayoutX(g.getLayoutX());
-                    p.setLayoutX(g.getLayoutX());
-                    
-//                    p.setLayoutX(g.getLayoutX()+ nouvelleCase.getX() * g.getWidth()/4);
-//                    p.setLayoutY(g.getLayoutY() + nouvelleCase.getY() * g.getWidth()/4);
+            //ajout en mode graphique
+            if (gui) {
+                GridPane g = this.guiGrille;
 
-                    controller.getFondGlobal().getChildren().add(p);
-                    p.getChildren().add(l);
-                    p.setVisible(true);
-                    l.setVisible(true);
-                    System.out.println("Ajout graphique effectué");
+                Pane p = new Pane();
+                Label l = new Label(Integer.toString(valeur));
+                p.getStyleClass().add("pane");
+                l.getStyleClass().add("tuile");
 
-                }
+                System.out.println(nouvelleCase.getX() + "-" + nouvelleCase.getY());
+
+                p.setLayoutX(g.getLayoutX() + nouvelleCase.getX() * g.getWidth() / 4);
+                p.setLayoutY(g.getLayoutY() + nouvelleCase.getY() * g.getWidth() / 4);
+                
+                nouvelleCase.setGuiCase(p);
+                
+                controller.getFondGlobal().getChildren().add(p);
+                p.getChildren().add(l);
+                p.setVisible(true);
+                l.setVisible(true);
+                System.out.println("Ajout graphique effectué");
+                
+                controller.deplacerTuile(p,g,GAUCHE,0);
+
             }
             return true; //L'ajout a bien été effectué
         } else {
