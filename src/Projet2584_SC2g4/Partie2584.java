@@ -122,7 +122,7 @@ public class Partie2584 implements Parametres, java.io.Serializable {
                 }
 
                 //On effectue le déplacement demandé
-                deplacementEffectue = g.lanceurDeplacerCases(direction);
+                deplacementEffectue = g.lanceurDeplacerCases(direction, this.guiController);
             }
         }
         else{

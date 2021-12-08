@@ -125,6 +125,7 @@ public class FXMLDocumentController implements Initializable {
     }
     @FXML
     public void keyPressed(KeyEvent ke) {
+        System.out.println("touche pressée!");
         String touche = ke.getText();
         if (touche.compareTo("q") == 0) { // utilisateur appuie sur "q" pour envoyer la tuile vers la gauche
             if (objectifx > 25) { // possible uniquement si on est pas dans la colonne la plus à gauche

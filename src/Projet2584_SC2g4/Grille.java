@@ -106,22 +106,22 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
         return true;
     }
 
-    public boolean lanceurDeplacerCases(int direction) {
+    public boolean lanceurDeplacerCases(int direction, GUIController controller) {
         Case[] extremites = this.getCasesExtremites(direction);
         deplacement = false; // pour vérifier si on a bougé au moins une case après le déplacement, avant d'en rajouter une nouvelle
         for (int i = 0; i < TAILLE; i++) {
             switch (direction) {
                 case HAUT:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0);
+                    this.deplacerCasesRecursif(extremites, i, direction, 0, controller);
                     break;
                 case BAS:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0);
+                    this.deplacerCasesRecursif(extremites, i, direction, 0, controller);
                     break;
                 case GAUCHE:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0);
+                    this.deplacerCasesRecursif(extremites, i, direction, 0, controller);
                     break;
                 default:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0);
+                    this.deplacerCasesRecursif(extremites, i, direction, 0, controller);
                     break;
             }
         }
@@ -137,7 +137,7 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
         deplacement = true;
     }
 
-    private void deplacerCasesRecursif(Case[] extremites, int rangee, int direction, int compteur) {
+    private void deplacerCasesRecursif(Case[] extremites, int rangee, int direction, int compteur, GUIController controller) {
         if (extremites[rangee] != null) {
             if ((direction == HAUT && extremites[rangee].getY() != compteur)
                     || (direction == BAS && extremites[rangee].getY() != TAILLE - 1 - compteur)
@@ -154,22 +154,28 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
                     default ->
                         extremites[rangee].setX(TAILLE - 1 - compteur);
                 }
-                this.grille.add(extremites[rangee]);
-                deplacement = true;
-            }
-            Case voisin = extremites[rangee].getVoisinDirect(-direction);
-            if (voisin != null) {
-                if (extremites[rangee].suiteFibo(voisin)) {
-                    this.fusion(extremites[rangee], voisin);
-                    extremites[rangee] = voisin.getVoisinDirect(-direction);
-                    this.grille.remove(voisin);
-                    this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1);
-                } else {
-                    extremites[rangee] = voisin;
-                    this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1);
+                if (this.guiGrille != null) {
+
+                    controller.deplacerTuileRecursif(extremites[rangee].getGuiCase(), this.guiGrille, direction, compteur);
                 }
             }
+            this.grille.add(extremites[rangee]);
+            deplacement = true;
+
         }
+        Case voisin = extremites[rangee].getVoisinDirect(-direction);
+        if (voisin != null) {
+            if (extremites[rangee].suiteFibo(voisin)) {
+                this.fusion(extremites[rangee], voisin);
+                extremites[rangee] = voisin.getVoisinDirect(-direction);
+                this.grille.remove(voisin);
+                this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1, controller);
+            } else {
+                extremites[rangee] = voisin;
+                this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1, controller);
+            }
+        }
+
     }
 
     /*
@@ -259,16 +265,16 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
 
                 p.setLayoutX(g.getLayoutX() + nouvelleCase.getX() * g.getWidth() / 4);
                 p.setLayoutY(g.getLayoutY() + nouvelleCase.getY() * g.getWidth() / 4);
-                
+
                 nouvelleCase.setGuiCase(p);
-                
+
                 controller.getFondGlobal().getChildren().add(p);
                 p.getChildren().add(l);
                 p.setVisible(true);
                 l.setVisible(true);
                 System.out.println("Ajout graphique effectué");
-                
-                controller.deplacerTuile(p,g,GAUCHE,0);
+
+                //controller.deplacerTuileRecursif(p, g, BAS, 0);
 
             }
             return true; //L'ajout a bien été effectué
