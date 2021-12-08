@@ -51,11 +51,11 @@ public class FXMLDocumentController implements Initializable {
         //initialisation de la partie
         //partie = new Partie2584();
         partie.setGUI(true);
-        partie.setGUIController(this);
+        //partie.setGUIController(this);
         //partie.setJ1(new Joueur("Clémentine"));
         if(partie.getJ1()!=null){
             pseudoLabel.setText(partie.getJ1().getPseudo());
-            partie.getJ1().getGrille().nouvelleCase(false,true,this);
+            //partie.getJ1().getGrille().nouvelleCase(false,true,this);
         }
         else{
             System.out.println("partie vide");

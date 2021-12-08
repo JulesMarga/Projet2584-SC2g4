@@ -20,7 +20,7 @@ public class AccueilGUI extends Application {
 
         Controller controller = (Controller) myLoader.getController();
         p.setJ1(new Joueur("clem"));
-        p.setController(controller);
+        //p.setController(controller);
         controller.setPartie(p);
         System.out.println("partie:"+controller.p);
         

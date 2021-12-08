@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GUIController">
+<AnchorPane fx:id="fondGlobal" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GUIController">
     <children>
         <BorderPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: red;">
             <top>
@@ -33,7 +33,7 @@
                                 <Label fx:id="labelScore1" alignment="CENTER" contentDisplay="CENTER" text="score1:"></Label>
                             </children>
                         </VBox>
-                        <GridPane fx:id="grille" gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0">
+                        <GridPane fx:id="grille1" gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0">
                             <columnConstraints>
                                 <ColumnConstraints prefWidth="100.0" />
                                 <ColumnConstraints prefWidth="100.0" />
@@ -62,7 +62,7 @@
                                 <Label fx:id="labelScore2" alignment="CENTER" contentDisplay="CENTER" text="score2:"></Label>
                             </children>
                         </VBox>
-                        <GridPane fx:id="grille" gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0">
+                        <GridPane fx:id="grille2" gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0">
                             <columnConstraints>
                                 <ColumnConstraints prefWidth="100.0" />
                                 <ColumnConstraints prefWidth="100.0" />

@@ -1,6 +1,7 @@
 package Projet2584_SC2g4;
 
 import application.FXMLDocumentController;
+import application.GUIController;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -201,7 +202,7 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
         return result;
     }
 
-    public boolean nouvelleCase(boolean b, boolean gui, FXMLDocumentController controller) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
+    public boolean nouvelleCase(boolean b, boolean gui, GUIController controller) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
         //On commence par regarder s'il reste de la place dans la grille pour une nouvelle case
         if (this.grille.size() < TAILLE * TAILLE) {
 
@@ -248,10 +249,11 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
                     p.setLayoutX(25 + nouvelleCase.getX() * 100);
                     p.setLayoutY(200 + nouvelleCase.getY() * 100);
 
-                    controller.getFond().getChildren().add(p);
+                    controller.getFondGlobal().getChildren().add(p);
                     p.getChildren().add(l);
                     p.setVisible(true);
                     l.setVisible(true);
+                    
 
                 }
             }

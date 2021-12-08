@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -30,9 +31,10 @@ import javafx.scene.layout.VBox;
 public class GUIController implements Initializable {
     
     Partie2584 p = new Partie2584();
-
     @FXML
-    private GridPane grille;
+    private AnchorPane fondGlobal;
+    @FXML
+    private GridPane grille1;
     @FXML
     private GridPane grille2;
     @FXML
@@ -48,8 +50,16 @@ public class GUIController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+       p.setGUI(true);
+       p.setGUIController(this);
        
+    }
+    
+    public VBox getFond(){
+        return this.fond;
+    }
+    public AnchorPane getFondGlobal(){
+        return this.fondGlobal;
     }
 
     public void mouseClicked1(MouseEvent me) {
@@ -79,7 +89,7 @@ public class GUIController implements Initializable {
                label.setVisible(false);
                tfield.setVisible(false);
                b.setVisible(false);
-               
+               p.deroulement();
            }
         });
         afficher(b);
@@ -160,4 +170,5 @@ public class GUIController implements Initializable {
         b.setLayoutX(t.getLayoutX()+t.getWidth()+10);
         b.setLayoutY(t.getLayoutY());
     }
+
 }

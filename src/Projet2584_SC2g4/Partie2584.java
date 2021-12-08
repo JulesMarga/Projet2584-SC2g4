@@ -2,6 +2,7 @@ package Projet2584_SC2g4;
 
 import application.Controller;
 import application.FXMLDocumentController;
+import application.GUIController;
 import java.util.Scanner;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -12,8 +13,7 @@ public class Partie2584 implements Parametres, java.io.Serializable {
     private Joueur joueur1;
     private Joueur joueur2; //éventuellement null
     private boolean gui; //false si en console, true si avec GUI
-    private FXMLDocumentController guiController;
-    private Controller accueilController;
+    private GUIController guiController;
 
     //Getters
     public Joueur getJ1() {
@@ -28,11 +28,8 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         return this.gui;
     }
 
-    public FXMLDocumentController getGUIController() {
+    public GUIController getGUIController() {
         return guiController;
-    }
-    public Controller getController(){
-        return accueilController;
     }
 
     //Setters
@@ -48,11 +45,8 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         this.gui = b;
     }
 
-    public void setGUIController(FXMLDocumentController c) {
+    public void setGUIController(GUIController c) {
         this.guiController = c;
-    }
-    public void setController(Controller c){
-        this.accueilController=c;
     }
 
     /**
@@ -63,7 +57,7 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         //Lorsqu'on entre dans la méthode on considère que le joueur est capable de jouer: sa grille n'est pas déjà intégralement remplie
         Grille g = j.getGrille();
 
-        if (this.gui) {
+        if (!this.gui) {
             //affichage du pseudo, du score, de la valeur max par rapport à l'objectif
             System.out.println("\n" + j.getPseudo());
         }
@@ -88,47 +82,50 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         }
 
         //Affichage de la grille
-        System.out.println("\n" + j.getPseudo());
-        System.out.println(g);
-        System.out.println("score: " + g.getScore());
-        System.out.println("valeur max: " + g.getValeurMax() + ", objectif: " + OBJECTIF);
+        if (!this.gui) {
+            System.out.println("\n" + j.getPseudo());
+            System.out.println(g);
+            System.out.println("score: " + g.getScore());
+            System.out.println("valeur max: " + g.getValeurMax() + ", objectif: " + OBJECTIF);
 
-        //choix du déplacement
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez choisir un déplacement: ");
-        String deplacement;
-        int direction;
-        boolean deplacementEffectue = false;
+            //choix du déplacement
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Veuillez choisir un déplacement: ");
+            String deplacement;
+            int direction;
+            boolean deplacementEffectue = false;
 
-        while (!deplacementEffectue) {
+            while (!deplacementEffectue) {
 
-            if (i == 1) {
-                System.out.println("Déplacer vers la Droite (d), Gauche (q), Haut (z), ou Bas (s) ?");
-
-                deplacement = sc.nextLine();
-                while (Partie2584.directionZQSD(deplacement) == 0) {
-                    System.out.println("Veuillez corriger votre saisie.\n");
+                if (i == 1) {
                     System.out.println("Déplacer vers la Droite (d), Gauche (q), Haut (z), ou Bas (s) ?");
+
                     deplacement = sc.nextLine();
-                }
+                    while (Partie2584.directionZQSD(deplacement) == 0) {
+                        System.out.println("Veuillez corriger votre saisie.\n");
+                        System.out.println("Déplacer vers la Droite (d), Gauche (q), Haut (z), ou Bas (s) ?");
+                        deplacement = sc.nextLine();
+                    }
 
-                direction = Partie2584.directionZQSD(deplacement);
-            } else {
-                System.out.println("Déplacer vers la Droite (m), Gauche (k), Haut (o), ou Bas (l) ?");
-
-                deplacement = sc.nextLine();
-                while (Partie2584.directionOKLM(deplacement) == 0) {
-                    System.out.println("Veuillez corriger votre saisie.\n");
+                    direction = Partie2584.directionZQSD(deplacement);
+                } else {
                     System.out.println("Déplacer vers la Droite (m), Gauche (k), Haut (o), ou Bas (l) ?");
+
                     deplacement = sc.nextLine();
+                    while (Partie2584.directionOKLM(deplacement) == 0) {
+                        System.out.println("Veuillez corriger votre saisie.\n");
+                        System.out.println("Déplacer vers la Droite (m), Gauche (k), Haut (o), ou Bas (l) ?");
+                        deplacement = sc.nextLine();
+                    }
+
+                    direction = Partie2584.directionOKLM(deplacement);
                 }
 
-                direction = Partie2584.directionOKLM(deplacement);
+                //On effectue le déplacement demandé
+                deplacementEffectue = g.lanceurDeplacerCases(direction);
             }
-
-            //On effectue le déplacement demandé
-            deplacementEffectue = g.lanceurDeplacerCases(direction);
         }
+
     }
 
     public void deroulement() {
@@ -163,7 +160,7 @@ public class Partie2584 implements Parametres, java.io.Serializable {
                 System.out.println(this.joueur1.getPseudo() + ", vous ne pouvez plus déplacer de tuiles, vous avez perdu !");
             }
         } else {
-            
+
             if (this.joueur1.getGrille().partieFinie()) {
                 if (this.joueur1.getGrille().getValeurMax() >= OBJECTIF) {
                     System.out.println(this.joueur1.getPseudo() + " a obtenu la tuile " + OBJECTIF + ", " + this.joueur1.getPseudo() + " a gagné !");
@@ -219,10 +216,6 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         } else {
             return 0;
         }
-    }
-
-    public void creerNouvelleCaseGraphique() {
-        this.getController().afficher(new Label("test"));
     }
 
 }
