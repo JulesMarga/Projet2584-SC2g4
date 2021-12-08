@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 public class Grille implements Parametres, Cloneable, java.io.Serializable {
@@ -15,10 +16,14 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
     private int valeurMax = 0; //La valeur maximale contenue par la grille à un instant t
     private int score = 0;
     private boolean deplacement;
+    private GridPane guiGrille;
 
     //Setters
     public void setValeurMax(int i) {
         this.valeurMax = i;
+    }
+    public void setGuiGrille(GridPane grid){
+        this.guiGrille = grid;
     }
 
     //Getters
@@ -241,19 +246,26 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
 
                 //ajout en mode graphique
                 if (gui) {
+                    GridPane g= this.guiGrille;
+                    
                     Pane p = new Pane();
                     Label l = new Label(Integer.toString(valeur));
                     p.getStyleClass().add("pane");
                     l.getStyleClass().add("tuile");
-
-                    p.setLayoutX(25 + nouvelleCase.getX() * 100);
-                    p.setLayoutY(200 + nouvelleCase.getY() * 100);
+                    
+                    System.out.println(nouvelleCase.getX()+"-"+nouvelleCase.getY());
+                    
+                    p.setLayoutX(g.getLayoutX());
+                    p.setLayoutX(g.getLayoutX());
+                    
+//                    p.setLayoutX(g.getLayoutX()+ nouvelleCase.getX() * g.getWidth()/4);
+//                    p.setLayoutY(g.getLayoutY() + nouvelleCase.getY() * g.getWidth()/4);
 
                     controller.getFondGlobal().getChildren().add(p);
                     p.getChildren().add(l);
                     p.setVisible(true);
                     l.setVisible(true);
-                    
+                    System.out.println("Ajout graphique effectué");
 
                 }
             }

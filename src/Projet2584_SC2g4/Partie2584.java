@@ -125,7 +125,9 @@ public class Partie2584 implements Parametres, java.io.Serializable {
                 deplacementEffectue = g.lanceurDeplacerCases(direction);
             }
         }
-
+        else{
+            System.out.println("En attente de déplacement");
+        }
     }
 
     public void deroulement() {

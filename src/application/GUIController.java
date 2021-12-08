@@ -85,11 +85,13 @@ public class GUIController implements Initializable {
            public void handle(ActionEvent e){
                String pseudo = tfield.getText();
                p.setJ1(new Joueur(pseudo));
+               p.getJ1().getGrille().setGuiGrille(grille1);
                labelPseudo1.setText(pseudo);
                label.setVisible(false);
                tfield.setVisible(false);
                b.setVisible(false);
-               p.deroulement();
+               p.getJ1().getGrille().nouvelleCase(true,true,p.getGUIController());
+               p.getJ1().getGrille().nouvelleCase(false,true,p.getGUIController());
            }
         });
         afficher(b);
@@ -118,6 +120,7 @@ public class GUIController implements Initializable {
            public void handle(ActionEvent e){
                String pseudo1 = tfield1.getText();
                p.setJ1(new Joueur(pseudo1));
+               p.getJ1().getGrille().setGuiGrille(grille1);
                labelPseudo1.setText(pseudo1);
                label1.setVisible(false);
                tfield1.setVisible(false);
@@ -144,10 +147,15 @@ public class GUIController implements Initializable {
            public void handle(ActionEvent e){
                String pseudo2 = tfield2.getText();
                p.setJ2(new Joueur(pseudo2));
+               p.getJ2().getGrille().setGuiGrille(grille2);
                labelPseudo2.setText(pseudo2);
                label2.setVisible(false);
                tfield2.setVisible(false);
                b2.setVisible(false);
+               p.getJ1().getGrille().nouvelleCase(true,true,p.getGUIController());
+               p.getJ2().getGrille().nouvelleCase(true,true,p.getGUIController());
+               //p.getJ1().getGrille().nouvelleCase(false,true,p.getGUIController());
+               //p.getJ2().getGrille().nouvelleCase(false,true,p.getGUIController());
                
            }
         });
