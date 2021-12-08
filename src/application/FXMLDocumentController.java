@@ -17,7 +17,7 @@ import javafx.scene.layout.Pane;
 
 public class FXMLDocumentController implements Initializable {
 
-    private Partie2584 partie;
+    private Partie2584 partie=new Partie2584();
 
     public Partie2584 getPartie() {
         return this.partie;
@@ -49,13 +49,21 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         //initialisation de la partie
-        partie = new Partie2584();
+        //partie = new Partie2584();
         partie.setGUI(true);
-        partie.setController(this);
-        partie.setJ1(new Joueur("Clémentine"));
-        pseudoLabel.setText(partie.getJ1().getPseudo());
+        partie.setGUIController(this);
+        //partie.setJ1(new Joueur("Clémentine"));
+        if(partie.getJ1()!=null){
+            pseudoLabel.setText(partie.getJ1().getPseudo());
+            partie.getJ1().getGrille().nouvelleCase(false,true,this);
+        }
+        else{
+            System.out.println("partie vide");
+        }
+        System.out.println("partie"+partie);
+        System.out.println("controller"+this);
         
-        partie.getJ1().getGrille().nouvelleCase(false,true,this);
+        
         
         
 //        // utilisation de styles pour la grille et la tuile (voir styles.css)

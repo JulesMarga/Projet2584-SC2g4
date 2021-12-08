@@ -1,5 +1,6 @@
 package Projet2584_SC2g4;
 
+import application.Controller;
 import application.FXMLDocumentController;
 import java.util.Scanner;
 import javafx.scene.Node;
@@ -11,7 +12,8 @@ public class Partie2584 implements Parametres, java.io.Serializable {
     private Joueur joueur1;
     private Joueur joueur2; //éventuellement null
     private boolean gui; //false si en console, true si avec GUI
-    private FXMLDocumentController controller;
+    private FXMLDocumentController guiController;
+    private Controller accueilController;
 
     //Getters
     public Joueur getJ1() {
@@ -26,8 +28,11 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         return this.gui;
     }
 
-    public FXMLDocumentController getController() {
-        return controller;
+    public FXMLDocumentController getGUIController() {
+        return guiController;
+    }
+    public Controller getController(){
+        return accueilController;
     }
 
     //Setters
@@ -43,8 +48,11 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         this.gui = b;
     }
 
-    public void setController(FXMLDocumentController c) {
-        this.controller = c;
+    public void setGUIController(FXMLDocumentController c) {
+        this.guiController = c;
+    }
+    public void setController(Controller c){
+        this.accueilController=c;
     }
 
     /**
@@ -64,8 +72,8 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         if (g.getValeurMax() == 0) {
             //Cas particulier: si le jeu est à deux joueurs, les deux doivent commencer avec la même grille
             if (i == 1) {
-                g.nouvelleCase(true, this.gui, this.controller);
-                g.nouvelleCase(false, this.gui, this.controller);
+                g.nouvelleCase(true, this.gui, this.guiController);
+                g.nouvelleCase(false, this.gui, this.guiController);
                 if (this.joueur2 != null) {
                     //On va créer un clone de la grille pour que le deuxième joueur ait la même par la suite
                     Grille clone = (Grille) g.clone();
@@ -76,7 +84,7 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         } else if (i == 2 && this.joueur1.getGrille().getGrille().size() == 2 && this.joueur1.getGrille().getScore() == 0) {
             // Ne rien faire: cas particulier du premier tour du J2
         } else {
-            g.nouvelleCase(false, this.gui, this.controller); //Sinon, 3 chances sur 4 d'avoir un 1, 1 chance sur 4 d'avoir un 2
+            g.nouvelleCase(false, this.gui, this.guiController); //Sinon, 3 chances sur 4 d'avoir un 1, 1 chance sur 4 d'avoir un 2
         }
 
         //Affichage de la grille

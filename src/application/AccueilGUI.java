@@ -1,5 +1,6 @@
 package application;
 
+import Projet2584_SC2g4.Joueur;
 import Projet2584_SC2g4.Partie2584;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class AccueilGUI extends Application {
+    
+    Partie2584 p = new Partie2584();
 
     @Override
     public void start(Stage stageAccueil) throws Exception {
@@ -16,6 +19,10 @@ public class AccueilGUI extends Application {
         Parent root = myLoader.load();
 
         Controller controller = (Controller) myLoader.getController();
+        p.setJ1(new Joueur("clem"));
+        p.setController(controller);
+        controller.setPartie(p);
+        System.out.println("partie:"+controller.p);
         
         controller.setPrevStage(stageAccueil);
         

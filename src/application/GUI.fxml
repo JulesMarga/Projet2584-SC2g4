@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GUIController">
+    <children>
+        <BorderPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: red;">
+            <top>
+                <VBox fx:id="fond" spacing="3" prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: yellow;">
+                    <children>
+                        <Label contentDisplay="center" alignment="CENTER" text="Bienvenue dans le Jeu 2584 "></Label>
+                        <AnchorPane>
+                            <children>
+                                <Label text="Combien de joueurs souhaitent jouer?"></Label>
+                                <Button fx:id="p1Button" text="1 joueur" onMouseClicked="#mouseClicked1" alignment="center" contentDisplay="center" layoutY="90.0" layoutX="20.0"></Button>
+                                <Button fx:id="p2Button" text="2 joueurs" onMouseClicked="#mouseClicked2" alignment="center" contentDisplay="center" layoutY="90.0" layoutX="120.0"></Button>
+                            </children>
+                        </AnchorPane>
+                        
+                    </children>
+                </VBox>
+            </top>
+            <left>
+                <VBox spacing="3" prefHeight="600.0" prefWidth="500.0" fillWidth="false" alignment="center">
+                    <children>
+                        <VBox spacing="2" prefHeight="100.0" alignment="CENTER" prefWidth="250.0" style="-fx-background-color: yellow;">
+                            <children>
+                                <Label fx:id="labelPseudo1" alignment="CENTER" contentDisplay="CENTER" text="pseudoJoueur1"></Label>
+                                <Label fx:id="labelScore1" alignment="CENTER" contentDisplay="CENTER" text="score1:"></Label>
+                            </children>
+                        </VBox>
+                        <GridPane fx:id="grille" gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0">
+                            <columnConstraints>
+                                <ColumnConstraints prefWidth="100.0" />
+                                <ColumnConstraints prefWidth="100.0" />
+                                <ColumnConstraints prefWidth="100.0" />
+                                <ColumnConstraints prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints prefHeight="100.0" />
+                                <RowConstraints prefHeight="100.0" />
+                                <RowConstraints prefHeight="100.0" />
+                                <RowConstraints prefHeight="100.0" />
+                            </rowConstraints>
+                        </GridPane>
+                        <Pane prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: blue;">
+                            
+                        </Pane>
+                    </children>
+                </VBox>
+            </left>
+            <right>
+                <VBox spacing="3" prefHeight="600.0" prefWidth="500.0" fillWidth="false" alignment="center">
+                    <children>
+                        <VBox spacing="2" prefHeight="100.0" alignment="CENTER" prefWidth="250.0" style="-fx-background-color: yellow;">
+                            <children>
+                                <Label fx:id="labelPseudo2" alignment="CENTER" contentDisplay="CENTER" text="pseudoJoueur2"></Label>
+                                <Label fx:id="labelScore2" alignment="CENTER" contentDisplay="CENTER" text="score2:"></Label>
+                            </children>
+                        </VBox>
+                        <GridPane fx:id="grille" gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0">
+                            <columnConstraints>
+                                <ColumnConstraints prefWidth="100.0" />
+                                <ColumnConstraints prefWidth="100.0" />
+                                <ColumnConstraints prefWidth="100.0" />
+                                <ColumnConstraints prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints prefHeight="100.0" />
+                                <RowConstraints prefHeight="100.0" />
+                                <RowConstraints prefHeight="100.0" />
+                                <RowConstraints prefHeight="100.0" />
+                            </rowConstraints>
+                        </GridPane>
+                        <Pane prefHeight="100.0" style="-fx-background-color: black;">
+                            
+                        </Pane>
+                    </children>
+                </VBox>
+            </right>
+            <bottom>
+                <HBox spacing="2" style="-fx-background-color:grey;" prefHeight="100.0"></HBox>
+            </bottom>
+        </BorderPane>
+    </children>
+</AnchorPane>
