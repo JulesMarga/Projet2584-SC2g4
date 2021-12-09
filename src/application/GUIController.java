@@ -60,6 +60,10 @@ public class GUIController implements Initializable, Parametres {
         p.setGUIController(this);
 
     }
+    
+    public Partie2584 getPartie(){
+        return this.p;
+    }
 
     public VBox getFond() {
         return this.fond;
@@ -256,8 +260,7 @@ public class GUIController implements Initializable, Parametres {
             th.setDaemon(true); // le Thread s'exécutera en arrière-plan (démon informatique)
             th.start(); // et on exécute le Thread pour mettre à jour la vue (déplacement continu de la tuile horizontalement)
 
-        }
-        else if(direction==HAUT){
+        } else if (direction == HAUT) {
             Task task = new Task<Void>() { // on définit une tâche parallèle pour mettre à jour la vue
                 double objectify = g.getLayoutY() + compteur * 100;
                 double x = p.getLayoutX();
@@ -288,10 +291,9 @@ public class GUIController implements Initializable, Parametres {
             th.setDaemon(true); // le Thread s'exécutera en arrière-plan (démon informatique)
             th.start(); // et on exécute le Thread pour mettre à jour la vue (déplacement continu de la tuile horizontalement)
 
-        }
-        else{
+        } else {
             Task task = new Task<Void>() { // on définit une tâche parallèle pour mettre à jour la vue
-                double objectify = g.getLayoutX() + (TAILLE-compteur - 1)* 100;
+                double objectify = g.getLayoutX() + (TAILLE - compteur - 1) * 100;
                 double x = p.getLayoutX();
                 double y = p.getLayoutY();
 
@@ -322,16 +324,21 @@ public class GUIController implements Initializable, Parametres {
 
         }
     }
+
     @FXML
     public void keyPressed(KeyEvent ke) {
         System.out.println("Touche pressée !");
-        String touche = ke.getText();
+        if (p.getJ1() != null) {
+            String touche = ke.getText();
 
-        if (touche.compareTo("q") == 0) { //déplacement à gauche
+            if (touche.compareTo("q") == 0) { //déplacement à gauche
 
-        } else if (touche.compareTo("d") == 0) { // déplacement à droite
-            System.out.println("Déplacement à droite");
-            p.getJ1().getGrille().lanceurDeplacerCases(DROITE,this);
+            } else if (touche.compareTo("d") == 0) { // déplacement à droite
+                System.out.println("Déplacement à droite");
+                p.getJ1().getGrille().lanceurDeplacerCases(DROITE, this);
+            }
         }
+
     }
+    
 }

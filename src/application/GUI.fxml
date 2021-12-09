@@ -6,9 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" onKeyPressed="#keyPressed" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GUIController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GUIController">
     <children>
-        <BorderPane prefHeight="800.0" prefWidth="1000.0">
+        <BorderPane prefHeight="800.0" prefWidth="1000.0" onKeyPressed="#keyPressed">
             <top>
                 <VBox fx:id="fond" spacing="3" prefHeight="100.0" prefWidth="1000.0">
                     <children>

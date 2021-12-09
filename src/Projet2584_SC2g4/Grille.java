@@ -161,18 +161,28 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
             }
             this.grille.add(extremites[rangee]);
             deplacement = true;
+            Case voisin = extremites[rangee].getVoisinDirect(-direction);
+            if (voisin != null) {
+                if (extremites[rangee].suiteFibo(voisin)) {
+                    this.fusion(extremites[rangee], voisin);
 
-        }
-        Case voisin = extremites[rangee].getVoisinDirect(-direction);
-        if (voisin != null) {
-            if (extremites[rangee].suiteFibo(voisin)) {
-                this.fusion(extremites[rangee], voisin);
-                extremites[rangee] = voisin.getVoisinDirect(-direction);
-                this.grille.remove(voisin);
+                    if (this.guiGrille != null) {
+                        voisin.getGuiCase().getChildren().removeAll();
+                        Label l = new Label(Integer.toString(extremites[rangee].getValeur()));
+                        l.getStyleClass().add("tuile");
+                        voisin.getGuiCase().getChildren().add(l);
+                        controller.deplacerTuileRecursif(voisin.getGuiCase(),this.guiGrille,direction,compteur);
+                        this.guiGrille.getChildren().remove(extremites[rangee].getGuiCase());
+                    }
+
+                    extremites[rangee] = voisin.getVoisinDirect(-direction);
+                    this.grille.remove(voisin);
+
+                } else {
+                    extremites[rangee] = voisin;
+                }
                 this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1, controller);
-            } else {
-                extremites[rangee] = voisin;
-                this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1, controller);
+
             }
         }
 
@@ -261,8 +271,6 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
                 p.getStyleClass().add("pane");
                 l.getStyleClass().add("tuile");
 
-                System.out.println(nouvelleCase.getX() + "-" + nouvelleCase.getY());
-
                 p.setLayoutX(g.getLayoutX() + nouvelleCase.getX() * g.getWidth() / 4);
                 p.setLayoutY(g.getLayoutY() + nouvelleCase.getY() * g.getWidth() / 4);
 
@@ -275,7 +283,6 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
                 System.out.println("Ajout graphique effectué");
 
                 //controller.deplacerTuileRecursif(p, g, BAS, 0);
-
             }
             return true; //L'ajout a bien été effectué
         } else {
