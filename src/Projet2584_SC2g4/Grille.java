@@ -157,6 +157,7 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
                 if (this.guiGrille != null) {
 
                     controller.deplacerTuileRecursif(extremites[rangee].getGuiCase(), this.guiGrille, direction, compteur);
+                    extremites[rangee].getGuiCase().setVisible(false);
                 }
             }
             this.grille.add(extremites[rangee]);
@@ -172,6 +173,8 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
                         l.getStyleClass().add("tuile");
                         voisin.getGuiCase().getChildren().add(l);
                         controller.deplacerTuileRecursif(voisin.getGuiCase(),this.guiGrille,direction,compteur);
+                        
+                        extremites[rangee].getGuiCase().setVisible(false);
                         this.guiGrille.getChildren().remove(extremites[rangee].getGuiCase());
                     }
 
