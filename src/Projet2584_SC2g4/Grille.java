@@ -17,6 +17,11 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
     private int score = 0;
     private boolean deplacement;
     private GridPane guiGrille;
+    
+    //Constructeur
+    public Grille() {
+        this.grille = new HashSet<>();
+    }
 
     //Setters
     public void setValeurMax(int i) {
@@ -38,11 +43,6 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
 
     public int getScore() {
         return score;
-    }
-
-    //Constructeur
-    public Grille() {
-        this.grille = new HashSet<>();
     }
 
     //Méthodes redéfinies
@@ -110,20 +110,7 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
         Case[] extremites = this.getCasesExtremites(direction);
         deplacement = false; // pour vérifier si on a bougé au moins une case après le déplacement, avant d'en rajouter une nouvelle
         for (int i = 0; i < TAILLE; i++) {
-            switch (direction) {
-                case HAUT:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0, controller);
-                    break;
-                case BAS:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0, controller);
-                    break;
-                case GAUCHE:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0, controller);
-                    break;
-                default:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0, controller);
-                    break;
-            }
+            this.deplacerCasesRecursif(extremites, i, direction, 0, controller);
         }
         return deplacement;
     }
@@ -172,8 +159,8 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
                         Label l = new Label(Integer.toString(extremites[rangee].getValeur()));
                         l.getStyleClass().add("tuile");
                         voisin.getGuiCase().getChildren().add(l);
-                        controller.deplacerTuileRecursif(voisin.getGuiCase(),this.guiGrille,direction,compteur);
-                        
+                        controller.deplacerTuileRecursif(voisin.getGuiCase(), this.guiGrille, direction, compteur);
+
                         extremites[rangee].getGuiCase().setVisible(false);
                         this.guiGrille.getChildren().remove(extremites[rangee].getGuiCase());
                     }

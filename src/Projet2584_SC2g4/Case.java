@@ -19,8 +19,9 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
     public void setGrille(Grille g) {
         this.grille = g;
     }
-    public void setGuiCase(Pane p){
-        this.guiCase=p;
+
+    public void setGuiCase(Pane p) {
+        this.guiCase = p;
     }
 
     public void setX(int x) {
@@ -36,9 +37,10 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
     }
 
     //Getters
-    public Pane getGuiCase(){
+    public Pane getGuiCase() {
         return this.guiCase;
     }
+
     public int getX() {
         return this.x;
     }
