@@ -141,7 +141,7 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Case(" + this.x + "," + this.y + "," + this.valeur + "," + this.grille + ")";
+        return "Case(" + this.x + "," + this.y + "," + this.valeur + ",)";
     }
 
 }

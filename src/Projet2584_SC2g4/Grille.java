@@ -1,6 +1,5 @@
 package Projet2584_SC2g4;
 
-import application.FXMLDocumentController;
 import application.GUIController;
 import java.util.ArrayList;
 import java.util.Arrays;

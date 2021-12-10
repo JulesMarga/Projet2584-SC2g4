@@ -13,8 +13,6 @@ public interface GrilleInter {
     public int getScore();
     @Override
     public String toString();
-    @Override
-    public Object clone();
     public String toHTML();
     public boolean partieFinie();
     public boolean lanceurDeplacerCases(int direction);

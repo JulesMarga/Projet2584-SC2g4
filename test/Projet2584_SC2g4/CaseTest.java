@@ -33,6 +33,7 @@ public class CaseTest implements Parametres {
         prop.load(propFile);
         expectedX = Integer.parseInt(prop.getProperty("x"));
         expectedY = Integer.parseInt(prop.getProperty("y"));
+        System.out.println(expectedX + " " + expectedY);
         expectedValeur = Integer.parseInt(prop.getProperty("valeur"));
         Grille grilleMock = Mockito.mock(Grille.class);
         for (int i = 0; i < 4; i++) {
@@ -48,7 +49,6 @@ public class CaseTest implements Parametres {
         Mockito.when(grilleMock.getGrille()).thenReturn(casesGrille);
         c = new Case(expectedX, expectedY, expectedValeur);  // instancier la classe à tester
         c.setGrille(grilleMock);
-
     }
 
     @AfterAll
@@ -69,11 +69,9 @@ public class CaseTest implements Parametres {
     @Test
     public void testSetGrille() {
         System.out.println("setGrille");
-        Grille g = null;
-        Case instance = null;
+        Grille g = new Grille();
+        Case instance = c;
         instance.setGrille(g);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -96,10 +94,8 @@ public class CaseTest implements Parametres {
     public void testSetX() {
         System.out.println("setX");
         int x = 0;
-        Case instance = null;
+        Case instance = c;
         instance.setX(x);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -109,10 +105,8 @@ public class CaseTest implements Parametres {
     public void testSetY() {
         System.out.println("setY");
         int y = 0;
-        Case instance = null;
+        Case instance = c;
         instance.setY(y);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -122,10 +116,8 @@ public class CaseTest implements Parametres {
     public void testSetValeur() {
         System.out.println("setValeur");
         int valeur = 0;
-        Case instance = null;
+        Case instance = c;
         instance.setValeur(valeur);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -148,12 +140,10 @@ public class CaseTest implements Parametres {
     @Test
     public void testGetX() {
         System.out.println("getX");
-        Case instance = new Case(0, 0, 1);
-        int expResult = 0;
+        Case instance = c;
+        int expResult = 1;
         int result = instance.getX();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -162,12 +152,10 @@ public class CaseTest implements Parametres {
     @Test
     public void testGetY() {
         System.out.println("getY");
-        Case instance = null;
-        int expResult = 0;
+        Case instance = c;
+        int expResult = 2;
         int result = instance.getY();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -176,12 +164,10 @@ public class CaseTest implements Parametres {
     @Test
     public void testGetValeur() {
         System.out.println("getValeur");
-        Case instance = null;
-        int expResult = 0;
+        Case instance = c;
+        int expResult = 8;
         int result = instance.getValeur();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -207,12 +193,10 @@ public class CaseTest implements Parametres {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        Case instance = null;
-        int expResult = 0;
+        Case instance = c;
+        int expResult = 33;
         int result = instance.hashCode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -221,13 +205,11 @@ public class CaseTest implements Parametres {
     @Test
     public void testSuiteFibo() {
         System.out.println("suiteFibo");
-        Case c = null;
-        Case instance = null;
-        boolean expResult = false;
+        Case c = new Case(0, 0, 5);
+        Case instance = c;
+        boolean expResult = true;
         boolean result = instance.suiteFibo(c);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -236,13 +218,13 @@ public class CaseTest implements Parametres {
     @Test
     public void testGetVoisinDirect() {
         System.out.println("getVoisinDirect");
-        int direction = 0;
-        Case instance = null;
-        Case expResult = null;
-        Case result = instance.getVoisinDirect(direction);
+        int direction = Parametres.HAUT;
+        Case instance = c;
+        Case expCase = new Case(1, 0, 2);
+        Case caseResult = instance.getVoisinDirect(direction);
+        boolean expResult = true;
+        boolean result = caseResult.equals(expCase);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -251,12 +233,10 @@ public class CaseTest implements Parametres {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Case instance = null;
-        String expResult = "";
+        Case instance = c;
+        String expResult = "Case(1,2,8)";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }
