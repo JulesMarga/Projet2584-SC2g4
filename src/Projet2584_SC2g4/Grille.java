@@ -156,7 +156,10 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
                 }
                 if (this.guiGrille != null) {
 
-                    controller.deplacerTuileRecursif(extremites[rangee].getGuiCase(), this.guiGrille, direction, compteur);
+                    controller.deplacerTuileRecursif(extremites[rangee].getGuiCase(), this.guiGrille, direction, compteur,false);
+                    
+                }
+                if(this.guiGrille!=null){
                     extremites[rangee].getGuiCase().setVisible(false);
                 }
             }
@@ -172,7 +175,7 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
                         Label l = new Label(Integer.toString(extremites[rangee].getValeur()));
                         l.getStyleClass().add("tuile");
                         voisin.getGuiCase().getChildren().add(l);
-                        controller.deplacerTuileRecursif(voisin.getGuiCase(),this.guiGrille,direction,compteur);
+                        controller.deplacerTuileRecursif(voisin.getGuiCase(),this.guiGrille,direction,compteur,true);
                         
                         extremites[rangee].getGuiCase().setVisible(false);
                         this.guiGrille.getChildren().remove(extremites[rangee].getGuiCase());
@@ -283,6 +286,7 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
                 p.getChildren().add(l);
                 p.setVisible(true);
                 l.setVisible(true);
+
                 System.out.println("Ajout graphique effectué");
 
                 //controller.deplacerTuileRecursif(p, g, BAS, 0);
