@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 public class GrilleTest implements Parametres {
     
     private static Grille g = new Grille();
+    private static HashSet<Case> expectedGrille = new HashSet<>();
     private static Properties prop;
     private static FileInputStream propFile;
     
@@ -35,6 +36,7 @@ public class GrilleTest implements Parametres {
                 j++;
             }
         }
+        expectedGrille = g.getGrille();
     }
 
     /**
@@ -54,7 +56,7 @@ public class GrilleTest implements Parametres {
     @Test
     public void testSetGuiGrille() {
         System.out.println("setGuiGrille");
-        GridPane grid = null;
+        GridPane grid = new GridPane();
         Grille instance = g;
         instance.setGuiGrille(grid);
     }
@@ -66,7 +68,7 @@ public class GrilleTest implements Parametres {
     public void testGetGrille() {
         System.out.println("getGrille");
         Grille instance = g;
-        HashSet<Case> expResult = null;
+        HashSet<Case> expResult = expectedGrille;
         HashSet<Case> result = instance.getGrille();
         assertEquals(expResult, result);
     }
@@ -96,30 +98,6 @@ public class GrilleTest implements Parametres {
     }
 
     /**
-     * Test of toString method, of class Grille.
-     */
-    @Test
-    public void testToString() {
-        System.out.println("toString");
-        Grille instance = g;
-        String expResult = "[0, 2, 0, 4][0, 0, 0, 16][0, 8, 32, 8][4, 16, 4, 2]";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of toHTML method, of class Grille.
-     */
-    @Test
-    public void testToHTML() {
-        System.out.println("toHTML");
-        Grille instance = g;
-        String expResult = "<html>[0, 2, 0, 4]<br/>[0, 0, 0, 16]<br/>[0, 8, 32, 8]<br/>[4, 16, 4, 2]<br/></html>";
-        String result = instance.toHTML();
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of partieFinie method, of class Grille.
      */
     @Test
@@ -128,20 +106,6 @@ public class GrilleTest implements Parametres {
         Grille instance = g;
         boolean expResult = false;
         boolean result = instance.partieFinie();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of lanceurDeplacerCases method, of class Grille.
-     */
-    @Test
-    public void testLanceurDeplacerCases() {
-        System.out.println("lanceurDeplacerCases");
-        int direction = 1;
-        Grille instance = g;
-        GUIController controller = new GUIController();
-        boolean expResult = false;
-        boolean result = instance.lanceurDeplacerCases(direction, controller);
         assertEquals(expResult, result);
     }
 
