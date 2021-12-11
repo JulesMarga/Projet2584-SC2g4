@@ -55,6 +55,13 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
 
     //Autres méthodes
     @Override
+    
+    /**
+     * equals est utilisée lors de l'ajout d'une case à un ensemble pour vérifier qu'il n'y ait pas de doublons (test parmi tous les candidats qui ont le même hashcode)
+     * @param obj est l'objet testé
+     * @return boolean 
+     */
+    
     public boolean equals(Object obj) { // la méthode equals est utilisée lors de l'ajout d'une case à un ensemble pour vérifier qu'il n'y a pas de doublons (teste parmi tous les candidats qui ont le même hashcode)
         if (obj instanceof Case) {
             Case c = (Case) obj;
@@ -69,6 +76,13 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
     public int hashCode() { // détermine le hashcode
         return this.x * 7 + this.y * 13;
     }
+    
+     /**
+     * suiteFibo détermine si deux cases correspondent à des valeurs consécutives de la suite de Fibonacco dont la plus grande est inférieur ou égale à 2584
+     * @param c est la case comparée 
+     * @return boolean, true si les valeurs se suivent dans la suite, false sinon 
+     */
+
 
     //détermine si deux cases correspondent à des valeurs consécutives de la suite de Fibonacci dont la plus grande est inférieure ou égale à 2584
     public boolean suiteFibo(Case c) {
@@ -94,6 +108,12 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
         }
         return false;
     }
+    
+    /**
+     * getVoisinDirect change la position d'une case d'une unité suivant la valeur de direction 
+     * @param direction est un entier qui, suivant sa valeur, donne une direction différente  
+     * @return c, une case avec ses nouvelles coordonnées  
+     */
 
     public Case getVoisinDirect(int direction) {
         switch (direction) {

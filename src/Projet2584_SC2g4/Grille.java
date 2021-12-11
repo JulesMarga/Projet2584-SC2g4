@@ -83,6 +83,11 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
         result += "</html>";
         return result;
     }
+    
+    /**
+     * partieFinie vérifie si il y a encore un mouvement possible dans la grille 
+     * @return boolean, true si la partie est finie, faux sinon 
+     */
 
     public boolean partieFinie() {
         if (this.grille.size() < TAILLE * TAILLE) {
@@ -104,6 +109,12 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
         }
         return true;
     }
+    
+    /**
+     * lanceurDeplacerCases appelle deplacerCasesRecursif avec les paramètres adéquats  
+     * @param direction est un entier qui, suivant sa valeur, donne une direction différente 
+     * @return deplacement, un boolean 
+     */
 
     public boolean lanceurDeplacerCases(int direction, GUIController controller) {
         Case[] extremites = this.getCasesExtremites(direction);
@@ -113,6 +124,12 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
         }
         return deplacement;
     }
+    
+    /**
+     * fusion fusionne 2 cases sans rien retourner  
+     * @param c1 première case 
+     * @param c2 deuxièmre case 
+     */
 
     private void fusion(Case c1, Case c2, GUIController controller) {
         c1.setValeur(c1.getValeur() + c2.getValeur());
@@ -130,6 +147,15 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
         }
         deplacement = true;
     }
+    
+    /**
+     * deplacerCasesRecursif
+     * @param extremites
+     * @param rangee
+     * @param direction
+     * @param compteur 
+     */
+
 
     private void deplacerCasesRecursif(Case[] extremites, int rangee, int direction, int compteur, GUIController controller) {
         if (extremites[rangee] != null) {
