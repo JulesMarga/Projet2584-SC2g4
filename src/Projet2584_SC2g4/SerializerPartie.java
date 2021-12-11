@@ -13,8 +13,6 @@ public class SerializerPartie {
      * serialPartie crée un document .ser contenant toutes les informations  caractérisants la partie passée en paramètre 
      * @param partie correspond à la Partie2584 
      */
-
-    //créer un document .ser contenant toutes les informations caractérisants la partie passée en paramètres
     public void serialPartie(Partie2584 partie) {
         ObjectOutputStream oos = null;
         try {
@@ -40,8 +38,6 @@ public class SerializerPartie {
      * deserialPartie régénère et retourne la partie associée au document .ser 
      * @return une partie 
      */
-
-    //régénère et retourne la partie associée au document .ser
     public Partie2584 deserialPartie() {
         Partie2584 partie;
         ObjectOutputStream oos = null;
@@ -73,8 +69,6 @@ public class SerializerPartie {
      * partieExist teste si le fichier .ser existe ou non 
      * @return un boolean 
      */
-    
-    //renvoie vrai si le fichier .ser existe, non sinon
     public boolean partieExist() {
         return Files.exists(Paths.get("partie.ser"));
     }

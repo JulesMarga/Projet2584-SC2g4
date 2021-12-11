@@ -61,7 +61,6 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
      * @param obj est l'objet testé
      * @return boolean 
      */
-    
     public boolean equals(Object obj) { // la méthode equals est utilisée lors de l'ajout d'une case à un ensemble pour vérifier qu'il n'y a pas de doublons (teste parmi tous les candidats qui ont le même hashcode)
         if (obj instanceof Case) {
             Case c = (Case) obj;
@@ -82,9 +81,6 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
      * @param c est la case comparée 
      * @return boolean, true si les valeurs se suivent dans la suite, false sinon 
      */
-
-
-    //détermine si deux cases correspondent à des valeurs consécutives de la suite de Fibonacci dont la plus grande est inférieure ou égale à 2584
     public boolean suiteFibo(Case c) {
 
         if (c != null) {
@@ -114,7 +110,6 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
      * @param direction est un entier qui, suivant sa valeur, donne une direction différente  
      * @return c, une case avec ses nouvelles coordonnées  
      */
-
     public Case getVoisinDirect(int direction) {
         switch (direction) {
             case HAUT:

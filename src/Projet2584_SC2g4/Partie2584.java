@@ -54,7 +54,6 @@ public class Partie2584 implements Parametres, java.io.Serializable {
      * @param j le joueur à qui c'est au tour de jouer
      * @param int entier qui correspond au numéro du joueur (1 ou 2)
      */
-    
     public void deroulerTour(Joueur j, int i) {
         //Lorsqu'on entre dans la méthode on considère que le joueur est capable de jouer: sa grille n'est pas déjà intégralement remplie
         Grille g = j.getGrille();
@@ -134,8 +133,7 @@ public class Partie2584 implements Parametres, java.io.Serializable {
 
     /**
      * deroulement appelle dans le bon ordre les joueurs jusqu'à ce que la partie soit finie 
-     */
-           
+     */         
     public void deroulement() {
 
         boolean continuer = true; //initialisation
@@ -163,7 +161,6 @@ public class Partie2584 implements Parametres, java.io.Serializable {
     /**
      * messageFin affiche un message suivant les conditions pour laquelle la partie s'est terminée  
      */
-
     public void messageFin() {
         if (this.joueur2 == null) {
             if (this.joueur1.getGrille().getValeurMax() >= OBJECTIF) {
@@ -196,7 +193,6 @@ public class Partie2584 implements Parametres, java.io.Serializable {
      * @return une boolean 
      * @throws NullPointerException 
      */
-    
     public boolean partieFinie() throws NullPointerException {
         //La partie est terminée lorsque l'un des deux joueurs a terminé sa partie
         boolean fin1 = this.joueur1.getGrille().partieFinie();
@@ -212,7 +208,6 @@ public class Partie2584 implements Parametres, java.io.Serializable {
      * @param saisie, string qui correspond à la saisie du clavier 
      * @return un entier 
      */
-
     public static int directionZQSD(String saisie) {
         saisie = saisie.toLowerCase();
         if (saisie.equals("z")) {
@@ -233,7 +228,6 @@ public class Partie2584 implements Parametres, java.io.Serializable {
      * @param saisie, string qui correspond à la saisie du clavier 
      * @return un entier correspond à la direction  
      */
-
     public static int directionOKLM(String saisie) {
         saisie = saisie.toLowerCase();
         if (saisie.equals("o")) {

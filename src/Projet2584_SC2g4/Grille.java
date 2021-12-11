@@ -88,7 +88,6 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
      * partieFinie vérifie si il y a encore un mouvement possible dans la grille 
      * @return boolean, true si la partie est finie, faux sinon 
      */
-
     public boolean partieFinie() {
         if (this.grille.size() < TAILLE * TAILLE) {
             if (this.valeurMax >= OBJECTIF) {
@@ -115,7 +114,6 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
      * @param direction est un entier qui, suivant sa valeur, donne une direction différente 
      * @return deplacement, un boolean 
      */
-
     public boolean lanceurDeplacerCases(int direction, GUIController controller) {
         Case[] extremites = this.getCasesExtremites(direction);
         deplacement = false; // pour vérifier si on a bougé au moins une case après le déplacement, avant d'en rajouter une nouvelle
@@ -130,7 +128,6 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
      * @param c1 première case 
      * @param c2 deuxièmre case 
      */
-
     private void fusion(Case c1, Case c2, GUIController controller) {
         c1.setValeur(c1.getValeur() + c2.getValeur());
         this.score += c1.getValeur();
@@ -155,8 +152,6 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
      * @param direction, entier qui correspond à la direction 
      * @param compteur, entier qui permet de savoir à quelle case on se trouve 
      */
-
-
     private void deplacerCasesRecursif(Case[] extremites, int rangee, int direction, int compteur, GUIController controller) {
         if (extremites[rangee] != null) {
 
@@ -239,7 +234,6 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
      * @param direction, entier qui correspond à la direction 
      * @return result, un tableau de cases aux extrémités de la direction donnée  
      */
-    
     public Case[] getCasesExtremites(int direction) {
         Case[] result = new Case[TAILLE];
         for (Case c : this.grille) {
@@ -276,7 +270,6 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
      * @param controller, 
      * @return 
      */
-    
     public boolean nouvelleCase(boolean b, boolean gui, GUIController controller) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
         //On commence par regarder s'il reste de la place dans la grille pour une nouvelle case
         if (this.grille.size() < TAILLE * TAILLE) {
