@@ -5,12 +5,10 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Properties;
 import javafx.scene.layout.Pane;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 import org.mockito.Mockito;
 
 public class CaseTest implements Parametres {
@@ -26,7 +24,7 @@ public class CaseTest implements Parametres {
     public CaseTest() {
     }
 
-    @BeforeAll
+    @BeforeClass
     public static void setUpClass() throws IOException {
         prop = new Properties();
         propFile = new FileInputStream("test/Projet2584_SC2g4/config.properties");
@@ -51,18 +49,6 @@ public class CaseTest implements Parametres {
         c.setGrille(grilleMock);
     }
 
-    @AfterAll
-    public static void tearDownClass() {
-    }
-
-    @BeforeEach
-    public void setUp() {
-    }
-
-    @AfterEach
-    public void tearDown() {
-    }
-
     /**
      * Test of setGrille method, of class Case.
      */
@@ -80,11 +66,9 @@ public class CaseTest implements Parametres {
     @Test
     public void testSetGuiCase() {
         System.out.println("setGuiCase");
-        Pane p = null;
-        Case instance = null;
+        Pane p = new Pane();
+        Case instance = c;
         instance.setGuiCase(p);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -126,12 +110,10 @@ public class CaseTest implements Parametres {
     @Test
     public void testGetGuiCase() {
         System.out.println("getGuiCase");
-        Case instance = null;
+        Case instance = c;
         Pane expResult = null;
         Pane result = instance.getGuiCase();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

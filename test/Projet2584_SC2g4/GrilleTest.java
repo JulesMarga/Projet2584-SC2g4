@@ -6,12 +6,9 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Properties;
 import javafx.scene.layout.GridPane;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class GrilleTest implements Parametres {
     
@@ -22,7 +19,7 @@ public class GrilleTest implements Parametres {
     public GrilleTest() {
     }
     
-    @BeforeAll
+    @BeforeClass
     public static void setUpClass() throws IOException {
         prop = new Properties();
         propFile = new FileInputStream("test/Projet2584_SC2g4/config.properties");
@@ -39,18 +36,6 @@ public class GrilleTest implements Parametres {
             }
         }
     }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
 
     /**
      * Test of setValeurMax method, of class Grille.
@@ -59,7 +44,7 @@ public class GrilleTest implements Parametres {
     public void testSetValeurMax() {
         System.out.println("setValeurMax");
         int i = 0;
-        Grille instance = new Grille();
+        Grille instance = g;
         instance.setValeurMax(i);
     }
 
@@ -70,7 +55,7 @@ public class GrilleTest implements Parametres {
     public void testSetGuiGrille() {
         System.out.println("setGuiGrille");
         GridPane grid = null;
-        Grille instance = new Grille();
+        Grille instance = g;
         instance.setGuiGrille(grid);
     }
 
@@ -81,7 +66,7 @@ public class GrilleTest implements Parametres {
     public void testGetGrille() {
         System.out.println("getGrille");
         Grille instance = g;
-        HashSet<Case> expResult = g.getGrille();
+        HashSet<Case> expResult = null;
         HashSet<Case> result = instance.getGrille();
         assertEquals(expResult, result);
     }
@@ -92,7 +77,7 @@ public class GrilleTest implements Parametres {
     @Test
     public void testGetValeurMax() {
         System.out.println("getValeurMax");
-        Grille instance = new Grille();
+        Grille instance = g;
         int expResult = 0;
         int result = instance.getValeurMax();
         assertEquals(expResult, result);
@@ -104,7 +89,7 @@ public class GrilleTest implements Parametres {
     @Test
     public void testGetScore() {
         System.out.println("getScore");
-        Grille instance = new Grille();
+        Grille instance = g;
         int expResult = 0;
         int result = instance.getScore();
         assertEquals(expResult, result);
@@ -172,11 +157,9 @@ public class GrilleTest implements Parametres {
         expResult[0] = new Case(0, 3, 4);
         expResult[1] = new Case(1, 0, 2);
         expResult[2] = new Case(2, 2, 32);
-        expResult[3] = new Case(0, 3, 4);
+        expResult[3] = new Case(3, 0, 4);
         Case[] result = instance.getCasesExtremites(direction);
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

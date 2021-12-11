@@ -90,7 +90,7 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
             }
             //Important: on sait déjà que les valeurs des cases sont contenues dans la suite de Fibonacci (par création des cases)
             //Donc il reste simplement à vérifier le caractère consécutif
-            return (max - min < min || max - min == min);
+            return (max - min <= min);
         }
         return false;
     }
