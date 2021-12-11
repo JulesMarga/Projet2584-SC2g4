@@ -52,7 +52,7 @@ public class Partie2584 implements Parametres, java.io.Serializable {
     /**
      * deroulerTour correspond à tout le déroulement du joueur pour un tour et ne renvoie rien 
      * @param j le joueur à qui c'est au tour de jouer
-     * @param in entier qui correspond au numéro du joueur (1 ou 2)
+     * @param int entier qui correspond au numéro du joueur (1 ou 2)
      */
     
     public void deroulerTour(Joueur j, int i) {
