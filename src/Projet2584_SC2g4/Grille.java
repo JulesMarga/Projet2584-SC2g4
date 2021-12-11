@@ -149,11 +149,11 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
     }
     
     /**
-     * deplacerCasesRecursif
-     * @param extremites
-     * @param rangee
-     * @param direction
-     * @param compteur 
+     * deplacerCasesRecursif déplace toutes les cases dans une direction et appelle la méthode Fusion si possible 
+     * @param extremites tableau de cases aux extrémités de la direction donnée 
+     * @param rangee, entier qui correspond à une ligne ou à une colonnne 
+     * @param direction, entier qui correspond à la direction 
+     * @param compteur, entier qui permet de savoir à quelle case on se trouve 
      */
 
 
@@ -233,6 +233,13 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
     * Si direction = GAUCHE : retourne les 4 cases qui sont le plus à gauche (une pour chaque ligne)
     * Attention : le tableau retourné peut contenir des null si les lignes/colonnes sont vides
      */
+    
+    /**
+     * getCasesExtremites renvoie les cases aux extrémités 
+     * @param direction, entier qui correspond à la direction 
+     * @return result, un tableau de cases aux extrémités de la direction donnée  
+     */
+    
     public Case[] getCasesExtremites(int direction) {
         Case[] result = new Case[TAILLE];
         for (Case c : this.grille) {
@@ -262,6 +269,14 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
         return result;
     }
 
+    /**
+     * nouvelleCase crée une case, lui attribue une valeur et l'implémente dans la grille    
+     * @param b, boolean qui influe la valeur de la case 
+     * @param gui, boolean a True si interface graphique, False sinon 
+     * @param controller, 
+     * @return 
+     */
+    
     public boolean nouvelleCase(boolean b, boolean gui, GUIController controller) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
         //On commence par regarder s'il reste de la place dans la grille pour une nouvelle case
         if (this.grille.size() < TAILLE * TAILLE) {
