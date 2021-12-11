@@ -1,6 +1,5 @@
 package Projet2584_SC2g4;
 
-import application.FXMLDocumentController;
 import application.GUIController;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +16,11 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
     private int score = 0;
     private boolean deplacement;
     private GridPane guiGrille;
+
+    //Constructeur
+    public Grille() {
+        this.grille = new HashSet<>();
+    }
 
     //Setters
     public void setValeurMax(int i) {
@@ -38,11 +42,6 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
 
     public int getScore() {
         return score;
-    }
-
-    //Constructeur
-    public Grille() {
-        this.grille = new HashSet<>();
     }
 
     //Méthodes redéfinies
@@ -110,27 +109,22 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
         Case[] extremites = this.getCasesExtremites(direction);
         deplacement = false; // pour vérifier si on a bougé au moins une case après le déplacement, avant d'en rajouter une nouvelle
         for (int i = 0; i < TAILLE; i++) {
-            switch (direction) {
-                case HAUT:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0, controller);
-                    break;
-                case BAS:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0, controller);
-                    break;
-                case GAUCHE:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0, controller);
-                    break;
-                default:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0, controller);
-                    break;
-            }
+            this.deplacerCasesRecursif(extremites, i, direction, 0, controller);
         }
         return deplacement;
     }
 
-    private void fusion(Case c1, Case c2) {
+    private void fusion(Case c1, Case c2, GUIController controller) {
         c1.setValeur(c1.getValeur() + c2.getValeur());
         this.score += c1.getValeur();
+        if(this.guiGrille !=null){
+            if (this.guiGrille.getId().equals("grille1")){
+                controller.setScore1(Integer.toString(this.score));
+            }
+            else if(this.guiGrille.getId().equals("grille2")){
+                controller.setScore2(Integer.toString(this.score));
+            }
+        }
         if (this.valeurMax < c1.getValeur()) {
             this.valeurMax = c1.getValeur();
         }
@@ -139,11 +133,15 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
 
     private void deplacerCasesRecursif(Case[] extremites, int rangee, int direction, int compteur, GUIController controller) {
         if (extremites[rangee] != null) {
+
             if ((direction == HAUT && extremites[rangee].getY() != compteur)
                     || (direction == BAS && extremites[rangee].getY() != TAILLE - 1 - compteur)
                     || (direction == GAUCHE && extremites[rangee].getX() != compteur)
                     || (direction == DROITE && extremites[rangee].getX() != TAILLE - 1 - compteur)) {
-                this.grille.remove(extremites[rangee]);
+                //On est maintenant sûr que la case n'est pas déjà à sa bonne place
+
+                this.grille.remove(extremites[rangee]); //retrait temporaire de la grille
+                //détermination des nouvelles coordonnées
                 switch (direction) {
                     case HAUT ->
                         extremites[rangee].setY(compteur);
@@ -154,40 +152,48 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
                     default ->
                         extremites[rangee].setX(TAILLE - 1 - compteur);
                 }
+                //Déplacement graphique vers la nouvelle position
                 if (this.guiGrille != null) {
 
-                    controller.deplacerTuileRecursif(extremites[rangee].getGuiCase(), this.guiGrille, direction, compteur,false);
-                    
-                }
-                if(this.guiGrille!=null){
-                    extremites[rangee].getGuiCase().setVisible(false);
+                    controller.deplacerTuileRecursif(extremites[rangee].getGuiCase(), this.guiGrille, direction, compteur, false);
+
                 }
             }
+            //rajout dans la grille
             this.grille.add(extremites[rangee]);
             deplacement = true;
+            //On trouve le voisin direct dans la direction opposée au déplacement
             Case voisin = extremites[rangee].getVoisinDirect(-direction);
-            if (voisin != null) {
-                if (extremites[rangee].suiteFibo(voisin)) {
-                    this.fusion(extremites[rangee], voisin);
 
+            if (voisin != null) {
+                //Cas de la fusion
+                if (extremites[rangee].suiteFibo(voisin)) {
+
+                    this.fusion(extremites[rangee], voisin, controller);
                     if (this.guiGrille != null) {
-                        voisin.getGuiCase().getChildren().removeAll();
+
+                        //On souhaite quand-même que le voisin se déplace jusque la case avec laquelle il fusionne
+                        controller.deplacerTuileRecursif(voisin.getGuiCase(), this.guiGrille, direction, compteur, true);
+
+                        voisin.getGuiCase().setVisible(false);
+                        this.guiGrille.getChildren().remove(extremites[rangee].getGuiCase());
+
+                        //On modifie graphiquement la valeur de la case résultant de la fusion
+                        extremites[rangee].getGuiCase().getChildren().removeAll();
                         Label l = new Label(Integer.toString(extremites[rangee].getValeur()));
                         l.getStyleClass().add("tuile");
-                        voisin.getGuiCase().getChildren().add(l);
-                        controller.deplacerTuileRecursif(voisin.getGuiCase(),this.guiGrille,direction,compteur,true);
-                        
-                        extremites[rangee].getGuiCase().setVisible(false);
-                        this.guiGrille.getChildren().remove(extremites[rangee].getGuiCase());
+                        extremites[rangee].getGuiCase().getChildren().add(l);
                     }
 
                     extremites[rangee] = voisin.getVoisinDirect(-direction);
                     this.grille.remove(voisin);
 
-                } else {
+                } //Cas sans fusion
+                else {
                     extremites[rangee] = voisin;
+                    this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1, controller);
+
                 }
-                this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1, controller);
 
             }
         }

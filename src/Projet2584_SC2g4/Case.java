@@ -19,8 +19,9 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
     public void setGrille(Grille g) {
         this.grille = g;
     }
-    public void setGuiCase(Pane p){
-        this.guiCase=p;
+
+    public void setGuiCase(Pane p) {
+        this.guiCase = p;
     }
 
     public void setX(int x) {
@@ -36,9 +37,10 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
     }
 
     //Getters
-    public Pane getGuiCase(){
+    public Pane getGuiCase() {
         return this.guiCase;
     }
+
     public int getX() {
         return this.x;
     }
@@ -88,7 +90,7 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
             }
             //Important: on sait déjà que les valeurs des cases sont contenues dans la suite de Fibonacci (par création des cases)
             //Donc il reste simplement à vérifier le caractère consécutif
-            return (max - min < min || max - min == min);
+            return (max - min <= min);
         }
         return false;
     }
@@ -139,7 +141,7 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Case(" + this.x + "," + this.y + "," + this.valeur + "," + this.grille + ")";
+        return "Case(" + this.x + "," + this.y + "," + this.valeur + ",)";
     }
 
 }

@@ -51,12 +51,16 @@ public class GUI extends Application implements Parametres {
 
                     if (touche.compareTo("q") == 0) { //déplacement à gauche
                         p.getJ1().getGrille().lanceurDeplacerCases(GAUCHE, controller);
+                        p.getJ1().getGrille().nouvelleCase(false, true, p.getGUIController());
                     } else if (touche.compareTo("d") == 0) { // déplacement à droite
                         p.getJ1().getGrille().lanceurDeplacerCases(DROITE, controller);
+                        p.getJ1().getGrille().nouvelleCase(false, true, p.getGUIController());
                     } else if (touche.compareTo("s") == 0) {
                         p.getJ1().getGrille().lanceurDeplacerCases(BAS, controller);
+                        p.getJ1().getGrille().nouvelleCase(false, true, p.getGUIController());
                     } else if (touche.compareTo("z") == 0) {
                         p.getJ1().getGrille().lanceurDeplacerCases(HAUT, controller);
+                        p.getJ1().getGrille().nouvelleCase(false, true, p.getGUIController());
                     }
                 }
             }

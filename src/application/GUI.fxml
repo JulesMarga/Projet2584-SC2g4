@@ -27,15 +27,15 @@
             <left>
                 <VBox spacing="3" prefHeight="600.0" prefWidth="500.0" fillWidth="false" alignment="center">
                     <children>
-                        <VBox spacing="2" prefHeight="100.0" alignment="CENTER" prefWidth="250.0" style="-fx-background-color: yellow;">
+                        <VBox fx:id="vbox1" spacing="2" prefHeight="100.0" alignment="CENTER" prefWidth="250.0" style="-fx-background-color: yellow;" visible="false">
                             <children>
                                 <Label fx:id="labelPseudo1" alignment="CENTER" contentDisplay="CENTER" text="pseudoJoueur1"></Label>
-                                <Label fx:id="labelScore1" alignment="CENTER" contentDisplay="CENTER" text="score1:"></Label>
+                                <Label fx:id="labelScore1" alignment="CENTER" contentDisplay="CENTER" text="score:"></Label>
                             </children>
                         </VBox>
                         <AnchorPane fx:id="fondGlobal">
                             <children>
-                                <GridPane fx:id="grille1" gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0">
+                                <GridPane fx:id="grille1" gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0" visible="false">
                                     <columnConstraints>
                                         <ColumnConstraints minWidth="100.0" prefWidth="100.0" />
                                         <ColumnConstraints minWidth="100.0" prefWidth="100.0" />
@@ -63,13 +63,13 @@
             <right>
                 <VBox spacing="3" prefHeight="600.0" prefWidth="500.0" fillWidth="false" alignment="center">
                     <children>
-                        <VBox spacing="2" prefHeight="100.0" alignment="CENTER" prefWidth="250.0" style="-fx-background-color: blue">
+                        <VBox fx:id="vbox2" spacing="2" prefHeight="100.0" alignment="CENTER" prefWidth="250.0" style="-fx-background-color: blue" visible="false">
                             <children>
                                 <Label fx:id="labelPseudo2" alignment="CENTER" contentDisplay="CENTER" text="pseudoJoueur2"></Label>
-                                <Label fx:id="labelScore2" alignment="CENTER" contentDisplay="CENTER" text="score2:"></Label>
+                                <Label fx:id="labelScore2" alignment="CENTER" contentDisplay="CENTER" text="score:"></Label>
                             </children>
                         </VBox>
-                        <GridPane fx:id="grille2" gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0">
+                        <GridPane fx:id="grille2" gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0" visible="false">
                             <columnConstraints>
                                 <ColumnConstraints minWidth="100.0" prefWidth="100.0" />
                                 <ColumnConstraints minWidth="100.0" prefWidth="100.0" />

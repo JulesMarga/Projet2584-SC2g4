@@ -53,6 +53,14 @@ public class GUIController implements Initializable, Parametres {
     private Label labelPseudo1;
     @FXML
     private Label labelPseudo2;
+    @FXML
+    private Label labelScore1;
+    @FXML
+    private Label labelScore2;
+    @FXML
+    private VBox vbox1;
+    @FXML
+    private VBox vbox2;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -71,6 +79,12 @@ public class GUIController implements Initializable, Parametres {
 
     public AnchorPane getFondGlobal() {
         return this.fondGlobal;
+    }
+    public void setScore1(String s){
+        labelScore1.setText("score: " + s);
+    }
+    public void setScore2(String s){
+        labelScore2.setText("score: " + s);
     }
 
     public void mouseClicked1(MouseEvent me) {
@@ -98,13 +112,11 @@ public class GUIController implements Initializable, Parametres {
                 p.setJ1(new Joueur(pseudo));
                 p.getJ1().getGrille().setGuiGrille(grille1);
                 labelPseudo1.setText(pseudo);
+                vbox1.setVisible(true);
+                grille1.setVisible(true);
                 fond.getChildren().remove(label);
                 fond.getChildren().remove(tfield);
                 fond.getChildren().remove(b);
-                p.getJ1().getGrille().nouvelleCase(true, true, p.getGUIController());
-                p.getJ1().getGrille().nouvelleCase(false, true, p.getGUIController());
-                p.getJ1().getGrille().nouvelleCase(true, true, p.getGUIController());
-                p.getJ1().getGrille().nouvelleCase(false, true, p.getGUIController());
                 p.getJ1().getGrille().nouvelleCase(true, true, p.getGUIController());
                 p.getJ1().getGrille().nouvelleCase(false, true, p.getGUIController());
 
@@ -138,6 +150,8 @@ public class GUIController implements Initializable, Parametres {
                 p.setJ1(new Joueur(pseudo1));
                 p.getJ1().getGrille().setGuiGrille(grille1);
                 labelPseudo1.setText(pseudo1);
+                vbox1.setVisible(true);
+                grille1.setVisible(true);
                 fond.getChildren().remove(label1);
                 fond.getChildren().remove(tfield1);
                 fond.getChildren().remove(b1);
@@ -165,6 +179,8 @@ public class GUIController implements Initializable, Parametres {
                 p.setJ2(new Joueur(pseudo2));
                 p.getJ2().getGrille().setGuiGrille(grille2);
                 labelPseudo2.setText(pseudo2);
+                vbox2.setVisible(true);
+                grille2.setVisible(true);
                 fond.getChildren().remove(label2);
                 fond.getChildren().remove(tfield2);
                 fond.getChildren().remove(b2);
@@ -196,7 +212,7 @@ public class GUIController implements Initializable, Parametres {
         b.setLayoutY(t.getLayoutY());
     }
 
-    public void deplacerTuileRecursif(Pane p, GridPane g, int direction, int compteur) {
+    public void deplacerTuileRecursif(Pane p, GridPane g, int direction, int compteur, boolean fusion) {
 
         if (direction == DROITE) {
             Task task = new Task<Void>() { // on définit une tâche parallèle pour mettre à jour la vue
@@ -219,8 +235,11 @@ public class GUIController implements Initializable, Parametres {
                             }
                         }
                         );
-                        Thread.sleep(2);
+                        Thread.sleep(1);
                     } // end while
+                    if(fusion){
+                        p.setVisible(false);
+                    }
                     return null; // la méthode call doit obligatoirement retourner un objet. Ici on n'a rien de particulier à retourner. Du coup, on utilise le type Void (avec un V majuscule) : c'est un type spécial en Java auquel on ne peut assigner que la valeur null
                 } // end call
 
@@ -250,8 +269,11 @@ public class GUIController implements Initializable, Parametres {
                             }
                         }
                         );
-                        Thread.sleep(2);
+                        Thread.sleep(1);
                     } // end while
+                    if(fusion){
+                        p.setVisible(false);
+                    }
                     return null; // la méthode call doit obligatoirement retourner un objet. Ici on n'a rien de particulier à retourner. Du coup, on utilise le type Void (avec un V majuscule) : c'est un type spécial en Java auquel on ne peut assigner que la valeur null
                 } // end call
 
@@ -281,8 +303,11 @@ public class GUIController implements Initializable, Parametres {
                             }
                         }
                         );
-                        Thread.sleep(2);
+                        Thread.sleep(1);
                     } // end while
+                    if(fusion){
+                        p.setVisible(false);
+                    }
                     return null; // la méthode call doit obligatoirement retourner un objet. Ici on n'a rien de particulier à retourner. Du coup, on utilise le type Void (avec un V majuscule) : c'est un type spécial en Java auquel on ne peut assigner que la valeur null
                 } // end call
 
@@ -312,8 +337,11 @@ public class GUIController implements Initializable, Parametres {
                             }
                         }
                         );
-                        Thread.sleep(2);
+                        Thread.sleep(1);
                     } // end while
+                    if(fusion){
+                        p.setVisible(false);
+                    }
                     return null; // la méthode call doit obligatoirement retourner un objet. Ici on n'a rien de particulier à retourner. Du coup, on utilise le type Void (avec un V majuscule) : c'est un type spécial en Java auquel on ne peut assigner que la valeur null
                 } // end call
 
