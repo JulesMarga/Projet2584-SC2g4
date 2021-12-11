@@ -50,9 +50,11 @@ public class Partie2584 implements Parametres, java.io.Serializable {
     }
 
     /**
+     * deroulerTour correspond à tout le déroulement du joueur pour un tour et ne renvoie rien 
      * @param j le joueur à qui c'est au tour de jouer
-     * @param i son numéro (1 ou 2)
+     * @param in entier qui correspond au numéro du joueur (1 ou 2)
      */
+    
     public void deroulerTour(Joueur j, int i) {
         //Lorsqu'on entre dans la méthode on considère que le joueur est capable de jouer: sa grille n'est pas déjà intégralement remplie
         Grille g = j.getGrille();
@@ -130,6 +132,10 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         }
     }
 
+    /**
+     * deroulement appelle dans le bon ordre les joueurs jusqu'à ce que la partie soit finie 
+     */
+           
     public void deroulement() {
 
         boolean continuer = true; //initialisation
@@ -153,6 +159,10 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         }
         messageFin();
     }
+    
+    /**
+     * messageFin affiche un message suivant les conditions pour laquelle la partie s'est terminée  
+     */
 
     public void messageFin() {
         if (this.joueur2 == null) {
@@ -180,6 +190,13 @@ public class Partie2584 implements Parametres, java.io.Serializable {
     }
 
     //Autres méthodes
+    
+    /**
+     * partieFinie permet de savoir si la partie est finie ou non 
+     * @return une boolean 
+     * @throws NullPointerException 
+     */
+    
     public boolean partieFinie() throws NullPointerException {
         //La partie est terminée lorsque l'un des deux joueurs a terminé sa partie
         boolean fin1 = this.joueur1.getGrille().partieFinie();
@@ -189,6 +206,12 @@ public class Partie2584 implements Parametres, java.io.Serializable {
             return fin1 || this.joueur2.getGrille().partieFinie();
         }
     }
+    
+    /**
+     * directionZQSD permet de renvoyer la direction choisie par le joueur 1 en fonction de sa saisie 
+     * @param saisie, string qui correspond à la saisie du clavier 
+     * @return un entier 
+     */
 
     public static int directionZQSD(String saisie) {
         saisie = saisie.toLowerCase();
@@ -204,6 +227,12 @@ public class Partie2584 implements Parametres, java.io.Serializable {
             return 0;
         }
     }
+    
+    /**
+     * directionOKLM pemet de renvoyer la direction choisie par le joueur 2 en fonction de sa saisie 
+     * @param saisie, string qui correspond à la saisie du clavier 
+     * @return un entier correspond à la direction  
+     */
 
     public static int directionOKLM(String saisie) {
         saisie = saisie.toLowerCase();

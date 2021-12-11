@@ -8,6 +8,11 @@ import java.io.ObjectOutputStream;
 import java.nio.file.*;
 
 public class SerializerPartie {
+    
+    /**
+     * serialPartie crée un document .ser contenant toutes les informations  caractérisants la partie passée en paramètre 
+     * @param partie correspond à la Partie2584 
+     */
 
     //créer un document .ser contenant toutes les informations caractérisants la partie passée en paramètres
     public void serialPartie(Partie2584 partie) {
@@ -30,6 +35,11 @@ public class SerializerPartie {
             }
         }
     }
+    
+    /**
+     * deserialPartie régénère et retourne la partie associée au document .ser 
+     * @return une partie 
+     */
 
     //régénère et retourne la partie associée au document .ser
     public Partie2584 deserialPartie() {
@@ -58,6 +68,11 @@ public class SerializerPartie {
         }
         return null;
     }
+    
+    /**
+     * partieExist teste si le fichier .ser existe ou non 
+     * @return un boolean 
+     */
     
     //renvoie vrai si le fichier .ser existe, non sinon
     public boolean partieExist() {
