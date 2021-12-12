@@ -8,7 +8,7 @@ package application;
 import Projet2584_SC2g4.Joueur;
 import Projet2584_SC2g4.Parametres;
 import Projet2584_SC2g4.Partie2584;
-import static application.Controller.placerTextField;
+import static application.GUIController.placerTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -86,7 +86,11 @@ public class GUIController implements Initializable, Parametres {
     public void setScore2(String s){
         labelScore2.setText("score: " + s);
     }
-
+    
+    /**
+     Evenement déclenché suite au choix du mode 1 joueur
+     * @param me l'évènement clic
+     */
     public void mouseClicked1(MouseEvent me) {
         p2Button.setDisable(true);
 
@@ -129,7 +133,6 @@ public class GUIController implements Initializable, Parametres {
 
     public void mouseClicked2(MouseEvent me) {
         p1Button.setDisable(true);
-        System.out.println("2j");
 
         Label label1 = new Label("pseudo joueur 1:");
         label1.setLayoutX(p1Button.getLayoutX());
@@ -355,14 +358,12 @@ public class GUIController implements Initializable, Parametres {
 
     @FXML
     public void keyPressed(KeyEvent ke) {
-        System.out.println("Touche pressée !");
         if (p.getJ1() != null) {
             String touche = ke.getText();
 
             if (touche.compareTo("q") == 0) { //déplacement à gauche
 
             } else if (touche.compareTo("d") == 0) { // déplacement à droite
-                System.out.println("Déplacement à droite");
                 p.getJ1().getGrille().lanceurDeplacerCases(DROITE, this);
             }
         }

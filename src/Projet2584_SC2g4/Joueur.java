@@ -4,8 +4,8 @@ public class Joueur implements java.io.Serializable {
 
     private String pseudo;
     private Grille grille;
-    private Grille oldGrille;
-    private int undo;
+    private Grille oldGrille; //la grille à disposition du joueur juste avant son dernier déplacement
+    private int undo; //nb d'annulations restantes pour le joueur
 
     //Constructeur
     public Joueur(String p) {

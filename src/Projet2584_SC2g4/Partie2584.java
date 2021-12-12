@@ -1,7 +1,5 @@
 package Projet2584_SC2g4;
 
-import application.Controller;
-import application.FXMLDocumentController;
 import application.GUIController;
 import java.util.Scanner;
 import javafx.scene.Node;

@@ -17,7 +17,7 @@
                             <children>
                                 <Label text="Combien de joueurs souhaitent jouer?"></Label>
                                 <Button fx:id="p1Button" text="1 joueur" onMouseClicked="#mouseClicked1" alignment="center" contentDisplay="center" layoutY="90.0" layoutX="20.0"></Button>
-                                <Button fx:id="p2Button" text="2 joueurs" onMouseClicked="#mouseClicked2" alignment="center" contentDisplay="center" layoutY="90.0" layoutX="120.0"></Button>
+                                <Button fx:id="p2Button" text="2 joueurs" onMouseClicked="#mouseClicked2" alignment="center" contentDisplay="center" layoutY="90.0" layoutX="120.0" disable="true"></Button>
                             </children>
                         </AnchorPane>
                         

@@ -42,7 +42,6 @@ public class GUI extends Application implements Parametres {
 
             @Override
             public void handle(KeyEvent t) {
-                System.out.println("Maintenant ça marche !");
                 GUIController controller = myLoader.getController();
                 Partie2584 p = controller.getPartie();
 

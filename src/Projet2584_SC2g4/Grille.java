@@ -112,6 +112,7 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
     /**
      * lanceurDeplacerCases appelle deplacerCasesRecursif avec les paramètres adéquats  
      * @param direction est un entier qui, suivant sa valeur, donne une direction différente 
+     * @param controller : le controller associé à l'interface graphique, si en mode graphique
      * @return deplacement, un boolean 
      */
     public boolean lanceurDeplacerCases(int direction, GUIController controller) {
@@ -127,6 +128,7 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
      * fusion fusionne 2 cases sans rien retourner  
      * @param c1 première case 
      * @param c2 deuxièmre case 
+     * @param controller : le controller associé à l'interface graphique, si en mode graphique
      */
     private void fusion(Case c1, Case c2, GUIController controller) {
         c1.setValeur(c1.getValeur() + c2.getValeur());
@@ -151,6 +153,7 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
      * @param rangee, entier qui correspond à une ligne ou à une colonnne 
      * @param direction, entier qui correspond à la direction 
      * @param compteur, entier qui permet de savoir à quelle case on se trouve 
+     * @param controller : le controller associé à l'interface graphique, si en mode graphique
      */
     private void deplacerCasesRecursif(Case[] extremites, int rangee, int direction, int compteur, GUIController controller) {
         if (extremites[rangee] != null) {
@@ -267,7 +270,7 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
      * nouvelleCase crée une case, lui attribue une valeur et l'implémente dans la grille    
      * @param b, boolean qui influe la valeur de la case 
      * @param gui, boolean a True si interface graphique, False sinon 
-     * @param controller, 
+     * @param controller, le controller associé à l'interface graphique, si en mode graphique
      * @return 
      */
     public boolean nouvelleCase(boolean b, boolean gui, GUIController controller) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
@@ -326,8 +329,6 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
                 p.getChildren().add(l);
                 p.setVisible(true);
                 l.setVisible(true);
-
-                System.out.println("Ajout graphique effectué");
 
                 //controller.deplacerTuileRecursif(p, g, BAS, 0);
             }
