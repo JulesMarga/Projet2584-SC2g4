@@ -271,7 +271,7 @@ public class Grille implements Parametres, Cloneable, java.io.Serializable {
      * @param b, boolean qui influe la valeur de la case 
      * @param gui, boolean a True si interface graphique, False sinon 
      * @param controller, le controller associé à l'interface graphique, si en mode graphique
-     * @return 
+     * @return un boolean qui confirme ou non si l'ajout a été effectué
      */
     public boolean nouvelleCase(boolean b, boolean gui, GUIController controller) { //b vaut true si on veut forcer la valeur de la nouvelle case a etre un 1
         //On commence par regarder s'il reste de la place dans la grille pour une nouvelle case
