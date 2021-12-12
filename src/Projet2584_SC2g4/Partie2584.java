@@ -48,9 +48,11 @@ public class Partie2584 implements Parametres, java.io.Serializable {
     }
 
     /**
-     * deroulerTour correspond à tout le déroulement du joueur pour un tour et ne renvoie rien 
+     * deroulerTour correspond à tout le déroulement du joueur pour un tour et
+     * ne renvoie rien
+     *
      * @param j le joueur à qui c'est au tour de jouer
-     * @param int entier qui correspond au numéro du joueur (1 ou 2)
+     * @param i entier qui correspond au numéro du joueur (1 ou 2)
      */
     public void deroulerTour(Joueur j, int i) {
         //Lorsqu'on entre dans la méthode on considère que le joueur est capable de jouer: sa grille n'est pas déjà intégralement remplie
@@ -79,9 +81,9 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         } else {
             g.nouvelleCase(false, this.gui, this.guiController); //Sinon, 3 chances sur 4 d'avoir un 1, 1 chance sur 4 d'avoir un 2
         }
-        
-        j.setOldGrille(j.getGrille());//On sauvegarde la nouvelle grille avant déplacement dans l'attribut oldGrille du joueur
-        
+
+        j.setOldGrille((Grille) g.clone());//On sauvegarde la nouvelle grille avant déplacement dans l'attribut oldGrille du joueur
+
         //Affichage de la grille
         if (!this.gui) {
             System.out.println("\n" + j.getPseudo());
@@ -124,40 +126,40 @@ public class Partie2584 implements Parametres, java.io.Serializable {
 
                 //On effectue le déplacement demandé
                 deplacementEffectue = g.lanceurDeplacerCases(direction, this.guiController);
-                
-                if (j.getUndo() >= 1){
+
+                if (j.getUndo() != 0) {
                     //On présente au joueur la grille obtenu avec son déplacement
                     System.out.println(g);
                     System.out.println("score: " + g.getScore());
                     System.out.println("valeur max: " + g.getValeurMax() + ", objectif: " + OBJECTIF);
-                
+
                     //On propose au joueur d'annuler son dernier mouvement
                     System.out.println("Voulez vous annuler votre dernier déplacement ? \n Il vous reste " + j.getUndo() + " annulation possible pour cette partie\n");
                     System.out.println("Oui (o) ou Non (n) \n");
                     String annuler = sc.nextLine();
-                    while (!"o".equals(annuler) && !"n".equals(annuler) ) {
+                    while (!"o".equals(annuler) && !"n".equals(annuler)) {
                         System.out.println("Pour annuler votre dernier déplacement, taper (o) sinon taper (n)");
                         annuler = sc.nextLine();
                     }
-                    if ("o".equals(annuler)){
-                        j.setGrille(j.getOldGrille());//On écrase la grille actuel du joueur par l'ancienne grille, celle qu'il avait avant de se déplacer
-                        j.setUndo(j.getUndo()-1);//On retire une posibilité d'annulation au joueur (puisque limité à 5)
+                    if ("o".equals(annuler)) {
+                        g = (Grille) j.getOldGrille().clone();//On écrase la grille actuel du joueur par l'ancienne grille, celle qu'il avait avant de se déplacer
+                        j.setUndo(j.getUndo() - 1);//On retire une posibilité d'annulation au joueur (puisque limité à 5)
                         System.out.println("Dernier deplacement annulé");//On informe le Joueur que son dernier déplacement a été annulé
+                        System.out.println(g);
                         deplacementEffectue = false;//On permet au joueur de se redéplacer (utile principalement dans un jeu à 2 joueurs, pas de perte de tour comparé à l'autre)
                     }
                 }
             }
-             
-            
-        }
-        else{
+
+        } else {
             System.out.println("En attente de déplacement");
         }
     }
 
     /**
-     * deroulement appelle dans le bon ordre les joueurs jusqu'à ce que la partie soit finie 
-     */         
+     * deroulement appelle dans le bon ordre les joueurs jusqu'à ce que la
+     * partie soit finie
+     */
     public void deroulement() {
 
         boolean continuer = true; //initialisation
@@ -181,9 +183,10 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         }
         messageFin();
     }
-    
+
     /**
-     * messageFin affiche un message suivant les conditions pour laquelle la partie s'est terminée  
+     * messageFin affiche un message suivant les conditions pour laquelle la
+     * partie s'est terminée
      */
     public void messageFin() {
         if (this.joueur2 == null) {
@@ -211,11 +214,11 @@ public class Partie2584 implements Parametres, java.io.Serializable {
     }
 
     //Autres méthodes
-    
     /**
-     * partieFinie permet de savoir si la partie est finie ou non 
-     * @return une boolean 
-     * @throws NullPointerException 
+     * partieFinie permet de savoir si la partie est finie ou non
+     *
+     * @return une boolean
+     * @throws NullPointerException
      */
     public boolean partieFinie() throws NullPointerException {
         //La partie est terminée lorsque l'un des deux joueurs a terminé sa partie
@@ -226,11 +229,13 @@ public class Partie2584 implements Parametres, java.io.Serializable {
             return fin1 || this.joueur2.getGrille().partieFinie();
         }
     }
-    
+
     /**
-     * directionZQSD permet de renvoyer la direction choisie par le joueur 1 en fonction de sa saisie 
-     * @param saisie, string qui correspond à la saisie du clavier 
-     * @return un entier 
+     * directionZQSD permet de renvoyer la direction choisie par le joueur 1 en
+     * fonction de sa saisie
+     *
+     * @param saisie, string qui correspond à la saisie du clavier
+     * @return un entier
      */
     public static int directionZQSD(String saisie) {
         saisie = saisie.toLowerCase();
@@ -246,11 +251,13 @@ public class Partie2584 implements Parametres, java.io.Serializable {
             return 0;
         }
     }
-    
+
     /**
-     * directionOKLM pemet de renvoyer la direction choisie par le joueur 2 en fonction de sa saisie 
-     * @param saisie, string qui correspond à la saisie du clavier 
-     * @return un entier correspond à la direction  
+     * directionOKLM pemet de renvoyer la direction choisie par le joueur 2 en
+     * fonction de sa saisie
+     *
+     * @param saisie, string qui correspond à la saisie du clavier
+     * @return un entier correspond à la direction
      */
     public static int directionOKLM(String saisie) {
         saisie = saisie.toLowerCase();
