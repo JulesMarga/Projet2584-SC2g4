@@ -54,13 +54,13 @@ public class Case implements Parametres, Cloneable, java.io.Serializable {
     }
 
     //Autres méthodes
-    @Override
     
     /**
      * equals est utilisée lors de l'ajout d'une case à un ensemble pour vérifier qu'il n'y ait pas de doublons (test parmi tous les candidats qui ont le même hashcode)
      * @param obj est l'objet testé
      * @return boolean 
      */
+    @Override
     public boolean equals(Object obj) { // la méthode equals est utilisée lors de l'ajout d'une case à un ensemble pour vérifier qu'il n'y a pas de doublons (teste parmi tous les candidats qui ont le même hashcode)
         if (obj instanceof Case) {
             Case c = (Case) obj;
