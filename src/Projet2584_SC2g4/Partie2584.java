@@ -56,7 +56,6 @@ public class Partie2584 implements Parametres, java.io.Serializable {
      */
     public void deroulerTour(Joueur j, int i) {
         //Lorsqu'on entre dans la méthode on considère que le joueur est capable de jouer: sa grille n'est pas déjà intégralement remplie
-        Grille g = j.getGrille();
 
         if (!this.gui) {
             //affichage du pseudo, du score, de la valeur max par rapport à l'objectif
@@ -64,32 +63,32 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         }
 
         //ajout d'une nouvelle case
-        if (g.getValeurMax() == 0) {
+        if (j.getGrille().getValeurMax() == 0 && j.getUndo() == 5) {
             //Cas particulier: si le jeu est à deux joueurs, les deux doivent commencer avec la même grille
             if (i == 1) {
-                g.nouvelleCase(true, this.gui, this.guiController);
-                g.nouvelleCase(false, this.gui, this.guiController);
+                j.getGrille().nouvelleCase(true, this.gui, this.guiController);
+                j.getGrille().nouvelleCase(false, this.gui, this.guiController);
                 if (this.joueur2 != null) {
                     //On va créer un clone de la grille pour que le deuxième joueur ait la même par la suite
-                    Grille clone = (Grille) g.clone();
+                    Grille clone = (Grille) j.getGrille().clone();
                     this.joueur2.setGrille(clone);
-                    this.joueur2.getGrille().setValeurMax(g.getValeurMax());
+                    this.joueur2.getGrille().setValeurMax(j.getGrille().getValeurMax());
                 }
             }
         } else if (i == 2 && this.joueur1.getGrille().getGrille().size() == 2 && this.joueur1.getGrille().getScore() == 0) {
             // Ne rien faire: cas particulier du premier tour du J2
         } else {
-            g.nouvelleCase(false, this.gui, this.guiController); //Sinon, 3 chances sur 4 d'avoir un 1, 1 chance sur 4 d'avoir un 2
+            j.getGrille().nouvelleCase(false, this.gui, this.guiController); //Sinon, 3 chances sur 4 d'avoir un 1, 1 chance sur 4 d'avoir un 2
         }
 
-        j.setOldGrille((Grille) g.clone());//On sauvegarde la nouvelle grille avant déplacement dans l'attribut oldGrille du joueur
+        j.setOldGrille((Grille) j.getGrille().clone());//On sauvegarde la nouvelle grille avant déplacement dans l'attribut oldGrille du joueur
 
         //Affichage de la grille
         if (!this.gui) {
             System.out.println("\n" + j.getPseudo());
-            System.out.println(g);
-            System.out.println("score: " + g.getScore());
-            System.out.println("valeur max: " + g.getValeurMax() + ", objectif: " + OBJECTIF);
+            System.out.println(j.getGrille());
+            System.out.println("score: " + j.getGrille().getScore());
+            System.out.println("valeur max: " + j.getGrille().getValeurMax() + ", objectif: " + OBJECTIF);
 
             //choix du déplacement
             Scanner sc = new Scanner(System.in);
@@ -125,13 +124,13 @@ public class Partie2584 implements Parametres, java.io.Serializable {
                 }
 
                 //On effectue le déplacement demandé
-                deplacementEffectue = g.lanceurDeplacerCases(direction, this.guiController);
+                deplacementEffectue = j.getGrille().lanceurDeplacerCases(direction, this.guiController);
 
                 if (j.getUndo() != 0) {
                     //On présente au joueur la grille obtenu avec son déplacement
-                    System.out.println(g);
-                    System.out.println("score: " + g.getScore());
-                    System.out.println("valeur max: " + g.getValeurMax() + ", objectif: " + OBJECTIF);
+                    System.out.println(j.getGrille());
+                    System.out.println("score: " + j.getGrille().getScore());
+                    System.out.println("valeur max: " + j.getGrille().getValeurMax() + ", objectif: " + OBJECTIF);
 
                     //On propose au joueur d'annuler son dernier mouvement
                     System.out.println("Voulez vous annuler votre dernier déplacement ? \n Il vous reste " + j.getUndo() + " annulation possible pour cette partie\n");
@@ -142,12 +141,13 @@ public class Partie2584 implements Parametres, java.io.Serializable {
                         annuler = sc.nextLine();
                     }
                     if ("o".equals(annuler)) {
-                        g = (Grille) j.getOldGrille().clone();//On écrase la grille actuel du joueur par l'ancienne grille, celle qu'il avait avant de se déplacer
+                        j.setGrille((Grille) j.getOldGrille().clone());//On écrase la grille actuel du joueur par l'ancienne grille, celle qu'il avait avant de se déplacer
                         j.setUndo(j.getUndo() - 1);//On retire une posibilité d'annulation au joueur (puisque limité à 5)
                         System.out.println("Dernier deplacement annulé");//On informe le Joueur que son dernier déplacement a été annulé
-                        System.out.println(g);
-                        deplacementEffectue = false;//On permet au joueur de se redéplacer (utile principalement dans un jeu à 2 joueurs, pas de perte de tour comparé à l'autre)
+                        System.out.println(j.getGrille());
+                        deplacementEffectue = false;//On permet au joueur de se redéplacer (utile principalement dans un jeu à 2 joueurs pour ne pas perdre un tour face à l'autre)
                     }
+                    else{deplacementEffectue = true;}
                 }
             }
 
