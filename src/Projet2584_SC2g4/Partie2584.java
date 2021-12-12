@@ -81,7 +81,9 @@ public class Partie2584 implements Parametres, java.io.Serializable {
         } else {
             g.nouvelleCase(false, this.gui, this.guiController); //Sinon, 3 chances sur 4 d'avoir un 1, 1 chance sur 4 d'avoir un 2
         }
-
+        
+        j.setOldGrille(j.getGrille());//On sauvegarde la nouvelle grille avant déplacement dans l'attribut oldGrille du joueur
+        
         //Affichage de la grille
         if (!this.gui) {
             System.out.println("\n" + j.getPseudo());
@@ -124,7 +126,31 @@ public class Partie2584 implements Parametres, java.io.Serializable {
 
                 //On effectue le déplacement demandé
                 deplacementEffectue = g.lanceurDeplacerCases(direction, this.guiController);
+                
+                if (j.getUndo() >= 1){
+                    //On présente au joueur la grille obtenu avec son déplacement
+                    System.out.println(g);
+                    System.out.println("score: " + g.getScore());
+                    System.out.println("valeur max: " + g.getValeurMax() + ", objectif: " + OBJECTIF);
+                
+                    //On propose au joueur d'annuler son dernier mouvement
+                    System.out.println("Voulez vous annuler votre dernier déplacement ? \n Il vous reste " + j.getUndo() + " annulation possible pour cette partie\n");
+                    System.out.println("Oui (o) ou Non (n) \n");
+                    String annuler = sc.nextLine();
+                    while (!"o".equals(annuler) && !"n".equals(annuler) ) {
+                        System.out.println("Pour annuler votre dernier déplacement, taper (o) sinon taper (n)");
+                        annuler = sc.nextLine();
+                    }
+                    if ("o".equals(annuler)){
+                        j.setGrille(j.getOldGrille());//On écrase la grille actuel du joueur par l'ancienne grille, celle qu'il avait avant de se déplacer
+                        j.setUndo(j.getUndo()-1);//On retire une posibilité d'annulation au joueur (puisque limité à 5)
+                        System.out.println("Dernier deplacement annulé");//On informe le Joueur que son dernier déplacement a été annulé
+                        deplacementEffectue = false;//On permet au joueur de se redéplacer (utile principalement dans un jeu à 2 joueurs, pas de perte de tour comparé à l'autre)
+                    }
+                }
             }
+             
+            
         }
         else{
             System.out.println("En attente de déplacement");
