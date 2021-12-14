@@ -7,5 +7,3 @@ avec p = partie2584 en cours.
 
 2) au lancement du programme, vérifier l'existence du fichier (serial.partieExist()) et si oui :
 	Partie2584 p = serial.deserialPartie();
-
-SUREMENT PROBLEME AVEC LE DEROULEMENT, ENCORE A BOSSER
